@@ -12,7 +12,1314 @@
     /* ── RESET & BASE ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
+      --accent: #b8960c;<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>La Planète 1729</title>
+  <meta name="description" content="Publications mathématiques — Articles, cours PDF et vidéos du collège à l'université. Explorez les mathématiques à travers leur histoire.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    /* ── RESET & BASE ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
       --accent: #b8960c;
+      --accent-light: #fdf3d0;
+      --accent-dark: #7a5c00;
+      --bg: #faf9f6;
+      --card: #ffffff;
+      --text: #1a1814;
+      --sub: #5a5650;
+      --ter: #9a9590;
+      --border: #e8e4dc;
+      --border-strong: #ccc8be;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #141210;
+        --card: #1e1c18;
+        --text: #f0ece4;
+        --sub: #a09a90;
+        --ter: #6a6460;
+        --border: #2e2c28;
+        --border-strong: #3e3c38;
+        --accent-light: #2a2000;
+      }
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Source Serif 4', Georgia, serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 16px;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; }
+
+    /* ── NAV ── */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2.5rem;
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      gap: 1rem;
+    }
+    .logo {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .logo-num {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.45rem;
+      font-weight: 400;
+      letter-spacing: -0.5px;
+      color: var(--text);
+    }
+    .logo-sub {
+      font-family: 'EB Garamond', serif;
+      font-size: 0.82rem;
+      color: var(--ter);
+      font-style: italic;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+    .nav-links a {
+      font-family: 'Source Serif 4', serif;
+      font-size: 0.88rem;
+      color: var(--sub);
+      transition: color 0.15s;
+      cursor: pointer;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--text); }
+    .nav-fb {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.5px;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 6px 14px;
+      border-radius: 2px;
+      background: none;
+      transition: background 0.15s, color 0.15s;
+      white-space: nowrap;
+    }
+    .nav-fb:hover { background: var(--accent-light); color: var(--accent-dark); }
+
+    /* ── HERO ── */
+    .hero {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 5rem 2.5rem 4rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 2rem;
+    }
+    .eyebrow-line { width: 32px; height: 1px; background: var(--accent); }
+    .eyebrow-text {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .hero h1 {
+      font-family: 'EB Garamond', serif;
+      font-size: clamp(2.4rem, 5vw, 3.4rem);
+      font-weight: 400;
+      line-height: 1.08;
+      letter-spacing: -1.5px;
+      margin-bottom: 1.6rem;
+    }
+    .hero h1 em { font-style: italic; }
+    .hero-body {
+      font-size: 1rem;
+      color: var(--sub);
+      line-height: 1.9;
+      max-width: 580px;
+      font-weight: 300;
+      margin-bottom: 2rem;
+    }
+    .hero-quote {
+      padding-left: 1.4rem;
+      border-left: 2px solid var(--accent);
+      font-family: 'EB Garamond', serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--sub);
+      line-height: 1.75;
+      max-width: 520px;
+      margin-bottom: 2.5rem;
+    }
+    .hero-quote cite {
+      display: block;
+      margin-top: 0.5rem;
+      font-style: normal;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.5px;
+      color: var(--ter);
+    }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-primary {
+      font-family: 'Source Serif 4', serif;
+      font-size: 0.88rem;
+      background: var(--text);
+      color: var(--bg);
+      border: none;
+      padding: 10px 22px;
+      border-radius: 2px;
+      transition: opacity 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.82; }
+    .btn-ghost {
+      font-family: 'Source Serif 4', serif;
+      font-size: 0.88rem;
+      background: none;
+      color: var(--sub);
+      border: 1px solid var(--border-strong);
+      padding: 10px 22px;
+      border-radius: 2px;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .btn-ghost:hover { background: var(--card); border-color: var(--accent); }
+
+    /* ── STATS ── */
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 4rem;
+      padding: 2rem 2.5rem;
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .stat { text-align: center; }
+    .stat-n {
+      font-family: 'EB Garamond', serif;
+      font-size: 2rem;
+      color: var(--text);
+      line-height: 1;
+    }
+    .stat-l {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.5px;
+      color: var(--ter);
+      margin-top: 4px;
+      text-transform: uppercase;
+    }
+
+    /* ── LAYOUT ── */
+    .page-layout {
+      display: grid;
+      grid-template-columns: 210px 1fr;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 3rem 2.5rem;
+      gap: 3rem;
+      align-items: start;
+    }
+    @media (max-width: 720px) {
+      .page-layout { grid-template-columns: 1fr; padding: 1.5rem; }
+      .sidebar { display: flex; flex-wrap: wrap; gap: 1rem; }
+      .aside-section { min-width: 140px; }
+      nav { padding: 1rem 1.2rem; }
+      .logo-sub { display: none; }
+      .nav-links { gap: 1rem; }
+      .hero { padding: 3rem 1.5rem 2.5rem; }
+      .stats { gap: 2rem; }
+    }
+
+    /* ── SIDEBAR ── */
+    .sidebar { position: sticky; top: 72px; }
+    .aside-section { margin-bottom: 2.2rem; }
+    .aside-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--ter);
+      margin-bottom: 0.6rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .aside-btn {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding: 6px 8px;
+      background: none;
+      border: none;
+      font-family: 'Source Serif 4', serif;
+      font-size: 0.875rem;
+      color: var(--sub);
+      border-radius: 2px;
+      transition: all 0.15s;
+      text-align: left;
+    }
+    .aside-btn:hover { background: var(--card); color: var(--text); }
+    .aside-btn.active {
+      background: var(--card);
+      color: var(--text);
+      font-weight: 400;
+      border-left: 2px solid var(--accent);
+      padding-left: 6px;
+    }
+    .aside-count {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--ter);
+    }
+
+    /* ── SEARCH ── */
+    .search-row { margin-bottom: 1.5rem; }
+    .search-input-wrap { position: relative; }
+    .search-input-wrap input {
+      width: 100%;
+      padding: 10px 16px;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      font-family: 'Source Serif 4', serif;
+      font-size: 0.9rem;
+      background: var(--card);
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .search-input-wrap input:focus { border-color: var(--accent); }
+    .search-input-wrap input::placeholder { color: var(--ter); font-style: italic; }
+    .results-info {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.5px;
+      color: var(--ter);
+      margin-bottom: 1.2rem;
+      text-transform: uppercase;
+    }
+
+    /* ── PUBLICATION LIST ── */
+    .pub-list { display: flex; flex-direction: column; gap: 0; }
+
+    /* ── PUB CARD ── */
+    .pub-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-bottom: none;
+      padding: 1.4rem 1.6rem;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.2s;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0.5rem 1.5rem;
+      align-items: start;
+    }
+    .pub-card:first-child { border-radius: 3px 3px 0 0; }
+    .pub-card:last-child { border-bottom: 1px solid var(--border); border-radius: 0 0 3px 3px; }
+    .pub-card:only-child { border-radius: 3px; border-bottom: 1px solid var(--border); }
+    .pub-card:hover { background: color-mix(in srgb, var(--card) 70%, var(--bg) 30%); border-color: var(--accent); }
+    .pub-card:hover + .pub-card { border-top-color: var(--accent); }
+    .pub-card.featured {
+      border: 2px solid var(--accent);
+      border-radius: 3px;
+      margin-bottom: 0.8rem;
+      padding: 1.6rem 1.8rem;
+    }
+    .pub-card.featured:last-child { border-bottom: 2px solid var(--accent); }
+    .featured-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.7rem;
+    }
+    .card-top {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 0.5rem;
+    }
+    .type-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 1px;
+    }
+    .type-tag.article { background: #f0f4f0; color: #2a5a2a; }
+    .type-tag.pdf     { background: #eff6ff; color: #1e3a6e; }
+    .type-tag.video   { background: #fff6ed; color: #7a3d00; }
+    @media (prefers-color-scheme: dark) {
+      .type-tag.article { background: #1a2e1a; color: #6abf6a; }
+      .type-tag.pdf     { background: #0f1e35; color: #7ab0e8; }
+      .type-tag.video   { background: #2a1a08; color: #d4873a; }
+    }
+    .card-theme {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--ter);
+    }
+    .card-title {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 400;
+      line-height: 1.3;
+      margin-bottom: 0.45rem;
+    }
+    .pub-card.featured .card-title { font-size: 1.35rem; }
+    .card-desc {
+      font-size: 0.85rem;
+      color: var(--sub);
+      line-height: 1.65;
+      font-weight: 300;
+    }
+    .card-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.5rem;
+      min-width: 90px;
+    }
+    .card-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--ter);
+      white-space: nowrap;
+    }
+    .card-level {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.3px;
+      padding: 3px 8px;
+      border-radius: 1px;
+      background: var(--bg);
+      color: var(--sub);
+      border: 1px solid var(--border);
+      white-space: nowrap;
+    }
+    .card-arrow { color: var(--ter); font-size: 1rem; margin-top: auto; }
+
+    /* ── MODAL OVERLAY ── */
+    .overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+      z-index: 500;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 4rem 1rem 2rem;
+      overflow-y: auto;
+    }
+    .overlay.open { display: flex; }
+    .modal {
+      background: var(--card);
+      border: 1px solid var(--border-strong);
+      border-radius: 4px;
+      max-width: 620px;
+      width: 100%;
+      position: relative;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    }
+    .modal-header { padding: 2rem 2rem 1.5rem; border-bottom: 1px solid var(--border); }
+    .modal-close {
+      position: absolute;
+      top: 1.1rem;
+      right: 1.1rem;
+      background: none;
+      border: none;
+      font-size: 1.1rem;
+      color: var(--ter);
+      line-height: 1;
+      padding: 4px 6px;
+      border-radius: 2px;
+      transition: background 0.15s;
+    }
+    .modal-close:hover { background: var(--bg); color: var(--text); }
+    .modal-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+    .modal-eyebrow .type-tag { font-size: 10px; padding: 4px 10px; }
+    .modal-level-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--ter);
+    }
+    .modal-theme-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--ter);
+    }
+    .modal-title {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 1.1rem;
+    }
+    .modal-excerpt {
+      font-size: 0.9rem;
+      color: var(--sub);
+      line-height: 1.85;
+      font-weight: 300;
+    }
+    .modal-footer {
+      padding: 1.2rem 2rem;
+      background: color-mix(in srgb, var(--bg) 60%, var(--card) 40%);
+      border-radius: 0 0 4px 4px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .modal-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--ter);
+      letter-spacing: 0.5px;
+    }
+    .modal-actions { display: flex; gap: 8px; }
+    .btn-modal-main {
+      font-family: 'Source Serif 4', serif;
+      font-size: 0.85rem;
+      background: var(--accent);
+      color: #2a1800;
+      border: none;
+      padding: 9px 20px;
+      border-radius: 2px;
+      transition: opacity 0.2s;
+    }
+    .btn-modal-main:hover { opacity: 0.85; }
+    .btn-modal-close {
+      font-family: 'Source Serif 4', serif;
+      font-size: 0.85rem;
+      background: none;
+      color: var(--sub);
+      border: 1px solid var(--border-strong);
+      padding: 9px 16px;
+      border-radius: 2px;
+      transition: background 0.15s;
+    }
+    .btn-modal-close:hover { background: var(--card); }
+
+    /* ── ABOUT SECTION ── */
+    .about-section {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 4rem 2.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .about-section h2 {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 400;
+      margin-bottom: 1.2rem;
+    }
+    .about-section p {
+      font-size: 0.95rem;
+      color: var(--sub);
+      line-height: 1.9;
+      font-weight: 300;
+      margin-bottom: 1rem;
+    }
+    .about-section p:last-child { margin-bottom: 0; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      background: var(--card);
+    }
+    .footer-logo {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.1rem;
+      color: var(--text);
+    }
+    .footer-logo em { font-style: italic; color: var(--accent); }
+    .footer-note {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--ter);
+      letter-spacing: 0.3px;
+    }
+
+    /* ── EMPTY STATE ── */
+    .empty-state {
+      text-align: center;
+      padding: 3rem 0;
+      color: var(--ter);
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 1rem;
+    }
+
+    /* ── ARTICLE PAGE (page de lecture) ── */
+    #article-page {
+      display: none;
+      min-height: 100vh;
+      background: var(--bg);
+    }
+    #article-page.open { display: block; }
+
+    .article-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2.5rem;
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .article-back {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.5px;
+      color: var(--sub);
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.15s;
+      padding: 0;
+    }
+    .article-back:hover { color: var(--text); }
+    .article-back-logo {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.1rem;
+      color: var(--text);
+    }
+
+    .article-body {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 4rem 2.5rem 6rem;
+    }
+
+    .article-header { margin-bottom: 3rem; border-bottom: 1px solid var(--border); padding-bottom: 2rem; }
+    .article-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 1.2rem;
+      flex-wrap: wrap;
+    }
+    .article-title {
+      font-family: 'EB Garamond', serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -1px;
+      margin-bottom: 1.2rem;
+    }
+    .article-meta {
+      display: flex;
+      gap: 1.5rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.5px;
+      color: var(--ter);
+      text-transform: uppercase;
+      flex-wrap: wrap;
+    }
+
+    /* Prose */
+    .prose { font-size: 1.02rem; line-height: 1.92; font-weight: 300; color: var(--text); }
+    .prose p { margin-bottom: 1.5rem; }
+    .prose p:last-child { margin-bottom: 0; }
+    .prose strong { font-weight: 500; }
+    .prose em { font-style: italic; font-family: 'EB Garamond', serif; font-size: 1.06em; }
+
+    .prose blockquote {
+      margin: 2rem 0;
+      padding-left: 1.4rem;
+      border-left: 2px solid var(--accent);
+      font-family: 'EB Garamond', serif;
+      font-size: 1.12rem;
+      font-style: italic;
+      color: var(--sub);
+      line-height: 1.75;
+    }
+    .prose blockquote cite {
+      display: block;
+      margin-top: 0.5rem;
+      font-style: normal;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.5px;
+      color: var(--ter);
+    }
+
+    .prose .math-block {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.08rem;
+      font-style: italic;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      padding: 0.9rem 1.2rem;
+      margin: 1.5rem 0;
+      border-radius: 0 2px 2px 0;
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    .prose .section-title {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 500;
+      margin: 2.5rem 0 1rem;
+      color: var(--text);
+    }
+
+    .prose .aside-note {
+      background: var(--accent-light);
+      border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+      padding: 1rem 1.2rem;
+      border-radius: 2px;
+      margin: 1.5rem 0;
+      font-size: 0.9rem;
+      color: var(--sub);
+      line-height: 1.7;
+    }
+    @media (prefers-color-scheme: dark) {
+      .prose .aside-note { color: var(--sub); }
+    }
+
+    .article-footer {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .article-footer-note {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--ter);
+      letter-spacing: 0.3px;
+    }
+  </style>
+</head>
+<body>
+
+<div id="main-wrapper">
+<!-- ── NAVIGATION ── -->
+<nav>
+  <div class="logo">
+    <span class="logo-num">La Planète 1729</span>
+    <span class="logo-sub">le nombre de Hardy-Ramanujan</span>
+  </div>
+  <div class="nav-links">
+    <a onclick="filterType('all')" class="active" id="nav-all">Publications</a>
+    <a onclick="filterType('Cours PDF')" id="nav-pdf">Cours</a>
+    <a onclick="filterType('Vidéo')" id="nav-vid">Vidéos</a>
+    <a href="#about">À propos</a>
+  </div>
+  <button class="nav-fb" onclick="window.open('https://facebook.com/VOTRE_PAGE', '_blank')">↗ Facebook</button>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-eyebrow">
+    <div class="eyebrow-line"></div>
+    <span class="eyebrow-text">Mathématiques · Histoire · Rigueur</span>
+  </div>
+  <h1>Les mathématiques sont<br>une <em>symphonie</em></h1>
+  <p class="hero-body">
+    Enseigner seulement leurs notes sans interpréter la mélodie décourage les apprenants.
+    Ce site rassemble publications, cours et vidéos autour d'une conviction : les objets
+    mathématiques se comprennent mieux quand on explore leur histoire.
+  </p>
+  <blockquote class="hero-quote">
+    « J'ai vu plus loin que les autres parce que je me suis juché sur les épaules de géants. »
+    <cite>— Isaac Newton</cite>
+  </blockquote>
+  <div class="hero-actions">
+    <button class="btn-primary" onclick="document.getElementById('main-section').scrollIntoView({behavior:'smooth'})">Explorer les publications</button>
+    <button class="btn-ghost" onclick="filterType('Cours PDF')">Télécharger des cours</button>
+  </div>
+</section>
+
+<!-- ── STATS ── -->
+<div class="stats">
+  <div class="stat"><div class="stat-n" id="count-articles">0</div><div class="stat-l">Articles</div></div>
+  <div class="stat"><div class="stat-n" id="count-pdf">0</div><div class="stat-l">Cours PDF</div></div>
+  <div class="stat"><div class="stat-n" id="count-videos">0</div><div class="stat-l">Vidéos</div></div>
+  <div class="stat"><div class="stat-n">4</div><div class="stat-l">Niveaux</div></div>
+</div>
+
+<!-- ── MAIN CONTENT ── -->
+<div class="page-layout" id="main-section">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="aside-section">
+      <div class="aside-label">Type</div>
+      <button class="aside-btn active" onclick="filterType('all')" id="t-all">Tout <span class="aside-count" id="cnt-all"></span></button>
+      <button class="aside-btn" onclick="filterType('Article')" id="t-art">Articles <span class="aside-count" id="cnt-art"></span></button>
+      <button class="aside-btn" onclick="filterType('Cours PDF')" id="t-pdf">Cours PDF <span class="aside-count" id="cnt-pdf"></span></button>
+      <button class="aside-btn" onclick="filterType('Vidéo')" id="t-vid">Vidéos <span class="aside-count" id="cnt-vid"></span></button>
+    </div>
+    <div class="aside-section">
+      <div class="aside-label">Niveau</div>
+      <button class="aside-btn" onclick="filterLevel('Collège')" id="l-col">Collège</button>
+      <button class="aside-btn" onclick="filterLevel('Lycée')" id="l-lyc">Lycée</button>
+      <button class="aside-btn" onclick="filterLevel('Prépa / BTS')" id="l-pre">Prépa / BTS</button>
+      <button class="aside-btn" onclick="filterLevel('Université')" id="l-uni">Université</button>
+    </div>
+    <div class="aside-section">
+      <div class="aside-label">Thème</div>
+      <button class="aside-btn" onclick="filterTag('Algèbre')" id="tag-alg">Algèbre</button>
+      <button class="aside-btn" onclick="filterTag('Analyse')" id="tag-ana">Analyse</button>
+      <button class="aside-btn" onclick="filterTag('Arithmétique')" id="tag-ari">Arithmétique</button>
+      <button class="aside-btn" onclick="filterTag('Géométrie')" id="tag-geo">Géométrie</button>
+    </div>
+  </aside>
+
+  <!-- Main area -->
+  <main>
+    <div class="search-row">
+      <div class="search-input-wrap">
+        <input type="text" id="searchInput" placeholder="Rechercher : groupes, équation de Pell, convergence…" oninput="render()">
+      </div>
+    </div>
+    <div class="results-info" id="resultsInfo"></div>
+    <div class="pub-list" id="pubList"></div>
+  </main>
+</div>
+
+<!-- ── À PROPOS ── -->
+<section class="about-section" id="about">
+  <h2>À propos</h2>
+  <!-- MODIFIER CE TEXTE : présentez-vous ici -->
+  <p>
+    [Votre présentation ici — quelques lignes sur votre parcours, votre démarche pédagogique,
+    votre conviction que l'histoire des mathématiques enrichit leur compréhension.]
+  </p>
+  <p>
+    Ce site centralise les publications partagées sur
+    <a href="https://facebook.com/VOTRE_PAGE" style="color: var(--accent);">Facebook</a>,
+    ainsi que les cours PDF et les vidéos YouTube associés.
+  </p>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-logo">La Planète <em>1729</em></div>
+  <div class="footer-note">
+    1729 = 1³ + 12³ = 9³ + 10³ — le plus petit nombre exprimable
+    comme somme de deux cubes de deux façons distinctes.
+  </div>
+</footer>
+</div><!-- end main-wrapper -->
+
+<!-- ── PAGE DE LECTURE ── -->
+<div id="article-page">
+  <nav class="article-nav">
+    <button class="article-back" onclick="closeArticle()">← Retour aux publications</button>
+    <div class="article-back-logo">La Planète 1729</div>
+  </nav>
+  <div class="article-body">
+    <div class="article-header">
+      <div class="article-eyebrow">
+        <span class="type-tag article" id="ap-tag">Article</span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ter)" id="ap-theme"></span>
+      </div>
+      <div class="article-title" id="ap-title"></div>
+      <div class="article-meta">
+        <span id="ap-level"></span>
+        <span id="ap-date"></span>
+      </div>
+    </div>
+    <div class="prose" id="ap-content"></div>
+    <div class="article-footer">
+      <div class="article-footer-note">La Planète 1729 · le nombre de Hardy-Ramanujan</div>
+      <button class="btn-ghost" onclick="closeArticle()">← Retour aux publications</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── MODAL ── -->
+<div class="overlay" id="overlay" onclick="closeOverlay(event)">
+  <div class="modal" id="modal" role="dialog" aria-modal="true">
+    <button class="modal-close" onclick="closeModal()" aria-label="Fermer">✕</button>
+    <div class="modal-header">
+      <div class="modal-eyebrow">
+        <span class="type-tag" id="m-tag"></span>
+        <span class="modal-level-tag" id="m-level"></span>
+        <span class="modal-theme-tag" id="m-theme"></span>
+      </div>
+      <div class="modal-title" id="m-title"></div>
+      <div class="modal-excerpt" id="m-excerpt"></div>
+    </div>
+    <div class="modal-footer">
+      <div class="modal-date" id="m-date"></div>
+      <div class="modal-actions" id="m-actions"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ─────────────────────────────────────────────
+//  DONNÉES — modifiez ce tableau pour ajouter,
+//  modifier ou supprimer des publications.
+//
+//  Champs :
+//    type    : "Article" | "Cours PDF" | "Vidéo"
+//    title   : titre de la publication
+//    desc    : résumé court (affiché sur la carte)
+//    level   : "Collège" | "Lycée" | "Prépa / BTS" | "Université"
+//    theme   : "Algèbre" | "Analyse" | "Arithmétique" | "Géométrie"
+//    date    : date de publication (texte libre)
+//    featured: true pour mettre en avant (première publication seulement)
+//    excerpt : texte plus long affiché dans la modale
+//    link    : URL de la publication (Facebook, PDF, YouTube…)
+//    ytId    : (Vidéo uniquement) identifiant YouTube (ex: "dQw4w9WgXcQ")
+// ─────────────────────────────────────────────
+const DATA = [
+  {
+    type: 'Article',
+    title: 'Structures algébriques — une brève histoire',
+    desc: 'De l\'équation de Pell aux anneaux de Gauss : comment l\'arithmétique des anciens a conduit aux structures modernes.',
+    level: 'Université',
+    theme: 'Algèbre',
+    date: 'Avr 2025',
+    featured: true,
+    excerpt: 'Les mathématiques dévoilent leurs secrets plus facilement en explorant leur histoire. L\'équation x²−2y²=1, étudiée depuis l\'Antiquité, conduit naturellement à la notion de groupe, de sous-groupe monogène, et finalement aux anneaux d\'entiers algébriques tels que ℤ[√−1] ou ℤ[√−2]. Brahmagupta, Euler, Gauss : chaque géant a posé une pierre sur l\'édifice.',
+    link: 'https://facebook.com/VOTRE_PAGE'
+  },
+  {
+    type: 'Article',
+    title: 'L\'équation de Pell et les fractions continues',
+    desc: 'Comment les fractions continues permettent de trouver la solution minimale de x²−ny²=1, et pourquoi (1 766 319 049, 226 153 980) résout x²−61y²=1.',
+    level: 'Prépa / BTS',
+    theme: 'Arithmétique',
+    date: 'Mar 2025',
+    excerpt: 'La solution minimale de x²−61y²=1 est (1 766 319 049, 226 153 980). Trouver cette solution sans les fractions continues relève du miracle. Cet article retrace la méthode élégante qui relie convergents et solutions de Pell.',
+    link: 'https://facebook.com/VOTRE_PAGE'
+  },
+  {
+    type: 'Cours PDF',
+    title: 'Groupes, anneaux et corps — cours complet',
+    desc: 'Définitions, exemples fondamentaux, morphismes, sous-structures. Cours structuré pour la prépa et la licence.',
+    level: 'Université',
+    theme: 'Algèbre',
+    date: 'Fév 2025',
+    excerpt: 'Un cours qui part des entiers relatifs pour construire progressivement les structures algébriques : groupe, anneau, corps. Chaque définition est motivée par un exemple historique. 40 pages, exercices corrigés.',
+    link: 'https://drive.google.com/VOTRE_PDF'
+  },
+  {
+    type: 'Vidéo',
+    title: 'L\'irrationalité de √2 — du scandale pythagoricien à aujourd\'hui',
+    desc: 'Hippase de Métaponte, la démonstration par l\'absurde, et la question moderne : qu\'est-ce qu\'un nombre irrationnel ?',
+    level: 'Lycée',
+    theme: 'Arithmétique',
+    date: 'Fév 2025',
+    excerpt: 'Une vidéo qui retrace deux millénaires de réflexion autour d\'un fait simple : la diagonale du carré n\'est pas commensurable à son côté. Cette découverte bouleversa les mathématiques grecques et continue d\'alimenter des recherches actuelles.',
+    ytId: 'VOTRE_ID_YOUTUBE',
+    link: 'https://youtube.com/watch?v=VOTRE_ID_YOUTUBE'
+  },
+  {
+    type: 'Article',
+    title: 'Triplets pythagoriciens et entiers de Gauss',
+    desc: 'L\'astuce d\'Euclide, l\'anneau ℤ[i] de Gauss, et la classification complète des solutions primitives de x²+y²=z².',
+    level: 'Prépa / BTS',
+    theme: 'Algèbre',
+    date: 'Jan 2025',
+    excerpt: 'Gauss reprend l\'astuce d\'Euclide et la transplante dans ℤ[i]. En supposant x+yi et x−yi premiers entre eux dans cet anneau, il en déduit en quelques lignes la formule universelle des triplets pythagoriciens primitifs.',
+    link: 'https://facebook.com/VOTRE_PAGE'
+  },
+  {
+    type: 'Cours PDF',
+    title: 'Suites numériques — du collège au théorème de Bolzano-Weierstrass',
+    desc: 'Une progression cohérente : suites arithmétiques, géométriques, convergence, critère de Cauchy, sous-suites.',
+    level: 'Lycée',
+    theme: 'Analyse',
+    date: 'Jan 2025',
+    excerpt: 'Ce cours parcourt la notion de suite depuis ses premières manifestations au collège jusqu\'aux théorèmes fondamentaux de l\'analyse réelle. L\'histoire guide chaque étape.',
+    link: 'https://drive.google.com/VOTRE_PDF'
+  },
+  {
+    type: 'Vidéo',
+    title: 'Le théorème des quatre carrés de Lagrange',
+    desc: 'Tout entier naturel est somme de quatre carrés. Une démonstration qui mobilise les quaternions et les entiers de Hurwitz.',
+    level: 'Université',
+    theme: 'Arithmétique',
+    date: 'Déc 2024',
+    excerpt: 'Un résultat étonnant, conjecturé par Bachet en 1621 et prouvé par Lagrange en 1770 : chaque entier naturel s\'écrit comme somme d\'au plus quatre carrés. La démonstration moderne passe par les quaternions de Hamilton.',
+    ytId: 'VOTRE_ID_YOUTUBE',
+    link: 'https://youtube.com/watch?v=VOTRE_ID_YOUTUBE'
+  },
+  {
+    type: 'Article',
+    title: 'L\'équation de Bachet y³=x²+2 et Euler',
+    desc: 'Comment Euler a factorisé dans ℤ[√−2] pour trouver les seules solutions entières : (5,3) et (−5,3).',
+    level: 'Université',
+    theme: 'Algèbre',
+    date: 'Nov 2024',
+    excerpt: 'Euler imagine de factoriser y³=(x−√−2)(x+√−2) dans l\'anneau ℤ[√−2] et d\'utiliser une hypothèse de primalité. Le raisonnement, bien qu\'incomplet à son époque, fonctionne ici car ℤ[√−2] est euclidien.',
+    link: 'https://facebook.com/VOTRE_PAGE'
+  },
+  {
+    type: 'Cours PDF',
+    title: 'Trigonométrie — cercle, formules, équations',
+    desc: 'Du cercle trigonométrique aux formules d\'addition. Cours avec 30 exercices progressifs.',
+    level: 'Lycée',
+    theme: 'Géométrie',
+    date: 'Oct 2024',
+    excerpt: 'Un cours construit autour du cercle unité, avec des motivations géométriques à chaque étape. Les formules d\'addition ne tombent pas du ciel : elles naissent de la composition de rotations.',
+    link: 'https://drive.google.com/VOTRE_PDF'
+  },
+  {
+    type: 'Cours PDF',
+    title: 'Introduction à l\'arithmétique modulaire',
+    desc: 'Congruences, théorème de Fermat-Euler, applications à la cryptographie RSA.',
+    level: 'Prépa / BTS',
+    theme: 'Arithmétique',
+    date: 'Sep 2024',
+    excerpt: 'L\'arithmétique modulaire, inventée formellement par Gauss dans ses Disquisitiones de 1801, est aujourd\'hui au cœur de la cryptographie moderne. Ce cours en retrace l\'histoire et développe les outils essentiels.',
+    link: 'https://drive.google.com/VOTRE_PDF'
+  },
+  {
+    type: 'Vidéo',
+    title: 'Séries entières et fonctions analytiques',
+    desc: 'Rayon de convergence, critère de D\'Alembert, développements usuels. Cours en vidéo pour la prépa.',
+    level: 'Prépa / BTS',
+    theme: 'Analyse',
+    date: 'Août 2024',
+    excerpt: 'Une vidéo qui construit pas à pas la notion de série entière, en partant des polynômes et en expliquant pourquoi le rayon de convergence mesure la distance au plus proche singularité dans ℂ.',
+    ytId: 'VOTRE_ID_YOUTUBE',
+    link: 'https://youtube.com/watch?v=VOTRE_ID_YOUTUBE'
+  },
+  {
+    type: 'Vidéo',
+    title: 'Fractions continues — l\'algorithme oublié',
+    desc: 'L\'algorithme d\'Euclide généralisé, les convergents, les meilleurs approximants rationnels.',
+    level: 'Lycée',
+    theme: 'Arithmétique',
+    date: 'Juil 2024',
+    excerpt: 'Les fractions continues sont absentes des programmes scolaires, pourtant elles fournissent les meilleures approximations rationnelles d\'un réel et permettent de résoudre l\'équation de Pell. Une vidéo pour réparer cet oubli.',
+    ytId: 'VOTRE_ID_YOUTUBE',
+    link: 'https://youtube.com/watch?v=VOTRE_ID_YOUTUBE'
+  }
+];
+
+// ─────────────────────────────────────────────
+//  STATE & HELPERS
+// ─────────────────────────────────────────────
+let activeType  = 'all';
+let activeLevel = null;
+let activeTag   = null;
+
+function tagClass(type) {
+  return type === 'Article' ? 'article' : type === 'Cours PDF' ? 'pdf' : 'video';
+}
+
+function updateCounts() {
+  const arts = DATA.filter(d => d.type === 'Article').length;
+  const pdfs = DATA.filter(d => d.type === 'Cours PDF').length;
+  const vids = DATA.filter(d => d.type === 'Vidéo').length;
+  document.getElementById('count-articles').textContent = arts;
+  document.getElementById('count-pdf').textContent      = pdfs;
+  document.getElementById('count-videos').textContent   = vids;
+  document.getElementById('cnt-all').textContent  = DATA.length;
+  document.getElementById('cnt-art').textContent  = arts;
+  document.getElementById('cnt-pdf').textContent  = pdfs;
+  document.getElementById('cnt-vid').textContent  = vids;
+}
+
+// ─────────────────────────────────────────────
+//  FILTER FUNCTIONS
+// ─────────────────────────────────────────────
+function clearAllActive() {
+  document.querySelectorAll('[id^="t-"],[id^="l-"],[id^="tag-"],[id^="nav-"]')
+    .forEach(b => b.classList.remove('active'));
+}
+
+function filterType(t) {
+  activeType = t; activeLevel = null; activeTag = null;
+  clearAllActive();
+  const map = { all: ['t-all','nav-all'], Article: ['t-art','nav-all'], 'Cours PDF': ['t-pdf','nav-pdf'], Vidéo: ['t-vid','nav-vid'] };
+  (map[t] || []).forEach(id => { const el = document.getElementById(id); if(el) el.classList.add('active'); });
+  render();
+}
+
+function filterLevel(l) {
+  activeLevel = activeLevel === l ? null : l;
+  activeType = 'all'; activeTag = null;
+  clearAllActive();
+  document.getElementById('t-all').classList.add('active');
+  document.getElementById('nav-all').classList.add('active');
+  const map = { Collège: 'l-col', Lycée: 'l-lyc', 'Prépa / BTS': 'l-pre', Université: 'l-uni' };
+  if (activeLevel && map[activeLevel]) document.getElementById(map[activeLevel]).classList.add('active');
+  render();
+}
+
+function filterTag(t) {
+  activeTag = activeTag === t ? null : t;
+  activeType = 'all'; activeLevel = null;
+  clearAllActive();
+  document.getElementById('t-all').classList.add('active');
+  document.getElementById('nav-all').classList.add('active');
+  const map = { Algèbre: 'tag-alg', Analyse: 'tag-ana', Arithmétique: 'tag-ari', Géométrie: 'tag-geo' };
+  if (activeTag && map[activeTag]) document.getElementById(map[activeTag]).classList.add('active');
+  render();
+}
+
+// ─────────────────────────────────────────────
+//  RENDER
+// ─────────────────────────────────────────────
+function render() {
+  const q = document.getElementById('searchInput').value.toLowerCase().trim();
+
+  const filtered = DATA.filter(d => {
+    const tOk = activeType === 'all' || d.type === activeType;
+    const lOk = !activeLevel || d.level === activeLevel;
+    const gOk = !activeTag   || d.theme === activeTag;
+    const sOk = !q ||
+      d.title.toLowerCase().includes(q) ||
+      d.desc.toLowerCase().includes(q)  ||
+      d.theme.toLowerCase().includes(q) ||
+      d.level.toLowerCase().includes(q);
+    return tOk && lOk && gOk && sOk;
+  });
+
+  const isDefaultView = activeType === 'all' && !activeLevel && !activeTag && !q;
+
+  document.getElementById('resultsInfo').textContent =
+    filtered.length + ' publication' + (filtered.length > 1 ? 's' : '');
+
+  if (!filtered.length) {
+    document.getElementById('pubList').innerHTML =
+      '<div class="empty-state">Aucun résultat pour cette recherche.</div>';
+    return;
+  }
+
+  document.getElementById('pubList').innerHTML = filtered.map((d) => {
+    const idx       = DATA.indexOf(d);
+    const isFeatured = d.featured && isDefaultView;
+    const tc        = tagClass(d.type);
+    return `
+      <div class="pub-card${isFeatured ? ' featured' : ''}" onclick="openModal(${idx})">
+        <div>
+          ${isFeatured ? '<div class="featured-label">Publication récente</div>' : ''}
+          <div class="card-top">
+            <span class="type-tag ${tc}">${d.type}</span>
+            <span class="card-theme">${d.theme}</span>
+          </div>
+          <div class="card-title">${d.title}</div>
+          <div class="card-desc">${d.desc}</div>
+        </div>
+        <div class="card-right">
+          <span class="card-date">${d.date}</span>
+          <span class="card-level">${d.level}</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+// ─────────────────────────────────────────────
+//  ARTICLES — contenu intégral
+//  Clé = index dans DATA (0 = première publication)
+// ─────────────────────────────────────────────
+const ARTICLES = {
+  0: `
+    <p>Les mathématiques sont une symphonie d'une rare beauté ! Enseigner seulement ses notes sans interpréter la mélodie décourage les apprenants. De surcroît, l'approche actuelle de l'enseignement des mathématiques semble souvent fournir des réponses à des questions que les élèves ne se posent pas naturellement. Il est donc judicieux de motiver les apprentissages avant de plonger les apprenants dans des techniques parfois complexes et d'origines obscures aux yeux du débutant.</p>
+
+    <blockquote>
+      « J'ai vu plus loin que les autres parce que je me suis juché sur les épaules de géants. »
+      <cite>— Isaac Newton</cite>
+    </blockquote>
+
+    <p>N'est-il pas évident dès lors que la compréhension des mathématiques s'enrichit au fil de l'histoire ? Dans mes recherches personnelles, je m'intéresse à la transposition de celle-ci dans l'enseignement de notre discipline. Contextualiser les objets mathématiques permet en effet de mieux les apprécier. Cette tâche, bien que difficile en raison de la complexité de l'histoire, me semble pertinente car les objets s'y développent plutôt « naturellement ».</p>
+
+    <div class="section-title">L'équation de Pell et l'irrationalité de √2</div>
+
+    <p>L'histoire des structures algébriques trouve son origine, sans surprise, dans les travaux des mathématiciens de la Grèce antique. Hippase de Métaponte découvre l'irrationalité du nombre d'or, ainsi que celle de la racine carrée de 2. Cette dernière découverte signifie, en termes modernes, que l'équation x²−2y²=0 n'admet pas de solution dans ℤ×ℤ, où ℤ désigne l'anneau des entiers relatifs. Mais que dire de l'équation x²−2y²=1 ? Bien que la première ne soit pas résoluble avec des entiers, la deuxième admet une infinité de solutions.</p>
+
+    <p>Le couple (1, 0) est une solution triviale de notre équation, mais elle n'est pas d'une grande utilité pour la suite. La première solution non triviale de x²−2y²=1 est le couple (3, 2). Un simple calcul permet de s'en convaincre. Cependant, trouver d'autres solutions n'est pas une tâche évidente, surtout à une époque où tout devait être calculé à la main. Mais quel est l'intérêt d'en trouver d'autres de toute façon ?</p>
+
+    <p>La deuxième solution non triviale est le couple (17, 12). En formant le rapport 3/2 puis 17/12, ils valent respectivement 1,5 et 1,41666… Une recherche avec Python permet de voir que la troisième solution donne 99/70, soit 1,4142… Cette suite de rapports semble fournir les décimales de la racine carrée de 2. En effet, si (x, y) est une solution de x²−2y²=1 avec y non nul, alors en divisant par y² on obtient :</p>
+
+    <div class="math-block">(x/y)² − 2 = 1/y²</div>
+
+    <p>Ainsi, en prenant y de plus en plus grand, le rapport 1/y² s'approche de 0, ce qui implique que (x/y)² tend vers 2. En d'autres termes, plus y est grand, plus le rapport x/y est proche de √2. D'où l'intérêt de calculer de grandes solutions. Existe-t-il donc un algorithme permettant de les trouver facilement ?</p>
+
+    <div class="section-title">La loi de composition de Brahmagupta</div>
+
+    <p>L'histoire devient plus passionnante à partir de cette question ! <em>(La partie suivante est inspirée de l'excellent livre de John Stillwell : Elements of Number Theory, Springer 2002.)</em></p>
+
+    <p>La face cachée de l'irrationalité de √2 est que tout couple (x, y) solution peut être codé par un seul nombre de la forme x+y√2. Cela découle du fait que si x₁+y₁√2 = x₂+y₂√2, alors l'irrationalité de √2 implique x₁=x₂ et y₁=y₂. Ces nombres sont suggérés par la factorisation :</p>
+
+    <div class="math-block">x²−2y² = (x−y√2)(x+y√2) = 1</div>
+
+    <p>Brahmagupta, mathématicien indien du 6ème siècle, avait connaissance d'une loi de composition entre les solutions de l'équation générale x²−ny²=1. Autrement dit, si (x₁, y₁) et (x₂, y₂) sont deux solutions, alors une troisième s'obtient par le produit de x₁+y₁√n par x₂+y₂√n. On obtient ainsi :</p>
+
+    <div class="math-block">x₃ = x₁x₂ + ny₁y₂ &nbsp;&nbsp;et&nbsp;&nbsp; y₃ = x₁y₂ + y₁x₂</div>
+
+    <p>Je vous laisse le démontrer. Revenons à notre question : comment obtenir davantage de solutions de x²−2y²=1 ? Le nombre 3+2√2 représente une solution. En le multipliant par lui-même, on en fabrique d'autres :</p>
+
+    <div class="math-block">(3+2√2)² = 17+12√2 &nbsp;&nbsp;→&nbsp;&nbsp; solution (17, 12)<br>(3+2√2)³ = 99+70√2 &nbsp;&nbsp;→&nbsp;&nbsp; solution (99, 70)</div>
+
+    <p>Élégant, n'est-ce pas ? La question naturelle qui se pose est : cet algorithme donne-t-il <em>toutes</em> les solutions ?</p>
+
+    <div class="section-title">Le groupe des solutions et son caractère monogène</div>
+
+    <p>La loi de multiplication ci-dessus est, en termes modernes, une loi de groupe : le groupe G des solutions de x²−ny²=1. En effet, puisque 1=1+0√n, l'élément neutre est dans G. L'inverse de x+y√n vaut x−y√n, qui est aussi une solution. Nous allons démontrer que les puissances de 3+2√2 donnent toutes les solutions positives.</p>
+
+    <p>Considérons le sous-groupe G⁺ des solutions positives (telles que x+y√2 > 0). Ce sous-groupe est monogène. En effet, l'image de G⁺ par le morphisme log est un sous-groupe de (ℝ, +). Son élément minimal positif est :</p>
+
+    <div class="math-block">a = log(3 + 2√2)</div>
+
+    <p>Il s'ensuit que log(G⁺) est de la forme aℤ — car les sous-groupes de (ℝ, +) sont soit de la forme aℤ, soit denses dans ℝ. Le résultat en découle ! Incroyable, n'est-ce pas ?</p>
+
+    <div class="aside-note">
+      <strong>Un défi illustrant la difficulté du problème général :</strong> la plus petite solution de x²−61y²=1 est (x, y) = (1 766 319 049 ; 226 153 980). Bon courage pour la retrouver à la main ! Cette question n'est pas triviale et nécessite les <em>fractions continues</em> — objet mathématique riche inventé par les Grecs, et malheureusement grand absent des programmes d'enseignement.
+    </div>
+
+    <div class="section-title">Triplets pythagoriciens et entiers de Gauss</div>
+
+    <p>Parallèlement aux équations de Pell, des recherches ont été menées autour des triplets pythagoriciens vérifiant x²+y²=z². Le triplet le plus célèbre est (3, 4, 5). Euclide a montré que toutes les solutions primitives sont de la forme :</p>
+
+    <div class="math-block">(u²−v², &nbsp;2uv, &nbsp;u²+v²)</div>
+
+    <p>où u et v sont des entiers premiers entre eux. Pour y parvenir, il utilise l'artifice suivant : si xy=z² et x, y sont premiers entre eux, alors x et y sont eux-mêmes des carrés dans ℤ.</p>
+
+    <p>Une version plus exotique de cet artifice a été utilisée par Euler pour résoudre l'équation de Bachet y³=x²+2. Euler factorise dans l'anneau ℤ[√−2] :</p>
+
+    <div class="math-block">y³ = (x−√−2)(x+√−2)</div>
+
+    <p>En écrivant x+√−2 = (a+b√−2)³ et en identifiant, on obtient 1=b(3a²−2b²), relation arithmétique dans ℤ. On en déduit que les seules solutions sont (5, 3) et (−5, 3).</p>
+
+    <p>Gauss, dans ses <em>Recherches arithmétiques</em>, a toutefois mis en garde : l'anneau ℤ[√−5] est un contre-exemple où l'argument d'Euler échoue. En revanche, l'anneau ℤ[i] — dit anneau des entiers de Gauss — se comporte bien. En y factorisant x²+y²=z² :</p>
+
+    <div class="math-block">(x+yi)(x−yi) = z²</div>
+
+    <p>et en supposant x+yi et x−yi premiers entre eux dans ℤ[i], Gauss en déduit que x+yi est un carré : il existe u, v ∈ ℤ tels que x+yi = (u+vi)² = u²−v²+2uvi, ce qui donne d'un seul coup la formule des triplets pythagoriciens primitifs !</p>
+
+    <p>Il reste bien sûr énormément de choses à dire sur ces structures algébriques. J'espère que vous avez compris, à travers cette longue publication, que les mathématiques dévoilent leurs secrets plus facilement en explorant leur histoire.</p>
+  `
+};
+
+// ─────────────────────────────────────────────
+//  MODAL
+// ─────────────────────────────────────────────
+function openModal(i) {
+  const d  = DATA[i];
+
+  // Si l'article a un contenu intégral, ouvrir la page de lecture
+  if (d.type === 'Article' && ARTICLES[i] !== undefined) {
+    openArticle(i);
+    return;
+  }
+
+  const tc = tagClass(d.type);
+  document.getElementById('m-tag').className   = 'type-tag ' + tc;
+  document.getElementById('m-tag').textContent = d.type;
+  document.getElementById('m-level').textContent = d.level;
+  document.getElementById('m-theme').textContent = '· ' + d.theme;
+  document.getElementById('m-title').textContent  = d.title;
+  document.getElementById('m-excerpt').textContent = d.excerpt;
+  document.getElementById('m-date').textContent    = d.date;
+
+  const labels = {
+    Article:     'Lire sur Facebook ↗',
+    'Cours PDF': 'Télécharger le PDF',
+    Vidéo:       'Voir sur YouTube ↗'
+  };
+
+  document.getElementById('m-actions').innerHTML = `
+    <button class="btn-modal-main" onclick="window.open('${d.link}','_blank')">${labels[d.type]}</button>
+    <button class="btn-modal-close" onclick="closeModal()">Fermer</button>`;
+
+  document.getElementById('overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+// ─────────────────────────────────────────────
+//  ARTICLE PAGE
+// ─────────────────────────────────────────────
+function openArticle(i) {
+  const d = DATA[i];
+  document.getElementById('ap-tag').textContent   = d.type;
+  document.getElementById('ap-theme').textContent = d.theme;
+  document.getElementById('ap-title').textContent = d.title;
+  document.getElementById('ap-level').textContent = d.level;
+  document.getElementById('ap-date').textContent  = d.date;
+  document.getElementById('ap-content').innerHTML = ARTICLES[i];
+
+  // Masquer le site principal, afficher la page article
+  document.getElementById('main-wrapper').style.display = 'none';
+  const ap = document.getElementById('article-page');
+  ap.classList.add('open');
+  window.scrollTo(0, 0);
+}
+
+function closeArticle() {
+  document.getElementById('article-page').classList.remove('open');
+  document.getElementById('main-wrapper').style.display = 'block';
+  window.scrollTo(0, 0);
+}
+
+function closeModal() {
+  document.getElementById('overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function closeOverlay(e) {
+  if (e.target === document.getElementById('overlay')) closeModal();
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+// ─────────────────────────────────────────────
+//  INIT
+// ─────────────────────────────────────────────
+updateCounts();
+render();
+</script>
+
+</body>
+</html>
+
       --accent-light: #fdf3d0;
       --accent-dark: #7a5c00;
       --bg: #faf9f6;
