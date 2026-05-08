@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>La Planète 1729 — Publications mathématiques</title>
+  <meta name="description" content="Publications mathématiques — Articles, cours et vidéos du collège à l'université. Explorez les mathématiques à travers leur histoire.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300;1,8..60,400&display=swap" rel="stylesheet">
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)'], ['$', '$']],
+        displayMath: [['\\[', '\\]'], ['$$', '$$']],
+        tags: 'ams'
+      },
+      svg: { fontCache: 'global' },
+      startup: { ready() { MathJax.startup.defaultReady(); } }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --accent: #b8960c;
+      --accent-light: #fdf3d0;
+      --accent-dark: #7a5c00;
+      --bg: #faf9f6;
+      --card: #ffffff;
+      --color-hover: #f4f2ee;
+      --text: #1a1814;
+      --sub: #5a5650;
+      --ter: #9a9590;
+      --border: #e8e4dc;
+      --border-strong: #ccc8be;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #141210; --card: #1e1c18; --color-hover: #28261f;
+        --text: #f0ece4; --sub: #a09a90; --ter: #6a6460;
+        --border: #2e2c28; --border-strong: #3e3c38; --accent-light: #2a2000;
+      }
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Source Serif 4', Georgia, serif; background: var(--bg); color: var(--text); line-height: 1.6; font-size: 16px; }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; }
+
+    /* ── NAV ── */
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2.5rem; background: var(--card);
+      border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; gap: 1rem;
+    }
+    .logo { display: flex; align-items: baseline; gap: 10px; flex-shrink: 0; }
+    .logo-num { font-family: 'EB Garamond', serif; font-size: 1.45rem; font-weight: 400; letter-spacing: -0.5px; color: var(--text); }
+    .logo-sub { font-family: 'EB Garamond', serif; font-size: 0.82rem; color: var(--ter); font-style: italic; }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a { font-family: 'Source Serif 4', serif; font-size: 0.88rem; color: var(--sub); transition: color 0.15s; cursor: pointer; }
+    .nav-links a:hover, .nav-links a.active { color: var(--text); }
+    .nav-fb {
+      font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.5px;
+      color: var(--accent); border: 1px solid var(--accent); padding: 6px 14px;
+      border-radius: 2px; background: none; transition: background 0.15s, color 0.15s; white-space: nowrap;
+    }
+    .nav-fb:hover { background: var(--accent-light); color: var(--accent-dark); }
+
+    /* ── HERO ── */
+    .hero { max-width: 860px; margin: 0 auto; padding: 5rem 2.5rem 4rem; border-bottom: 1px solid var(--border); }
+    .hero-eyebrow { display: flex; align-items: center; gap: 12px; margin-bottom: 2rem; }
+    .eyebrow-line { width: 32px; height: 1px; background: var(--accent); }
+    .eyebrow-text { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); }
+    .hero h1 { font-family: 'EB Garamond', serif; font-size: clamp(2.4rem, 5vw, 3.4rem); font-weight: 400; line-height: 1.08; letter-spacing: -1.5px; margin-bottom: 1.6rem; }
+    .hero h1 em { font-style: italic; }
+    .hero-body { font-size: 1rem; color: var(--sub); line-height: 1.9; max-width: 580px; font-weight: 300; margin-bottom: 2rem; }
+    .hero-quote { padding-left: 1.4rem; border-left: 2px solid var(--accent); font-family: 'EB Garamond', serif; font-size: 1.1rem; font-style: italic; color: var(--sub); line-height: 1.75; max-width: 520px; margin-bottom: 2.5rem; }
+    .hero-quote cite { display: block; margin-top: 0.5rem; font-style: normal; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.5px; color: var(--ter); }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-primary { font-family: 'Source Serif 4', serif; font-size: 0.88rem; background: var(--text); color: var(--bg); border: none; padding: 10px 22px; border-radius: 2px; transition: opacity 0.2s; }
+    .btn-primary:hover { opacity: 0.82; }
+    .btn-ghost { font-family: 'Source Serif 4', serif; font-size: 0.88rem; background: none; color: var(--sub); border: 1px solid var(--border-strong); padding: 10px 22px; border-radius: 2px; transition: background 0.15s, border-color 0.15s; }
+    .btn-ghost:hover { background: var(--card); border-color: var(--accent); }
+
+    /* ── STATS ── */
+    .stats { display: flex; justify-content: center; gap: 4rem; padding: 2rem 2.5rem; background: var(--card); border-bottom: 1px solid var(--border); flex-wrap: wrap; }
+    .stat { text-align: center; }
+    .stat-n { font-family: 'EB Garamond', serif; font-size: 2rem; color: var(--text); line-height: 1; }
+    .stat-l { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.5px; color: var(--ter); margin-top: 4px; text-transform: uppercase; }
+
+    /* ── LAYOUT ── */
+    .page-layout { display: grid; grid-template-columns: 210px 1fr; max-width: 1120px; margin: 0 auto; padding: 3rem 2.5rem; gap: 3rem; align-items: start; }
+
+    /* ── SIDEBAR ── */
+    .sidebar { position: sticky; top: 72px; }
+    .aside-section { margin-bottom: 2.2rem; }
+    .aside-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--ter); margin-bottom: 0.6rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+    .aside-btn { display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 6px 8px; background: none; border: none; font-family: 'Source Serif 4', serif; font-size: 0.875rem; color: var(--sub); border-radius: 2px; transition: all 0.15s; text-align: left; -webkit-tap-highlight-color: transparent; }
+    .aside-btn:hover { background: var(--card); color: var(--text); }
+    .aside-btn.active { background: var(--card); color: var(--text); font-weight: 400; border-left: 2px solid var(--accent); padding-left: 6px; }
+    .aside-count { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--ter); }
+
+    /* ── TIROIR FILTRES MOBILE ── */
+    .filter-toggle-btn {
+      display: none;
+      width: 100%; align-items: center; gap: 8px;
+      font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.5px;
+      color: var(--sub); border: 1px solid var(--border-strong);
+      padding: 10px 14px; border-radius: 2px; background: var(--card);
+      margin-bottom: 1rem; -webkit-tap-highlight-color: transparent;
+    }
+    .filter-toggle-btn:active { background: var(--color-hover); }
+    .filter-badge {
+      margin-left: auto; background: var(--accent); color: var(--bg);
+      font-family: 'JetBrains Mono', monospace; font-size: 9px;
+      padding: 2px 7px; border-radius: 10px;
+    }
+    .filter-drawer {
+      display: none; background: var(--card); border: 1px solid var(--border);
+      border-radius: 3px; padding: 1rem 1.2rem; margin-bottom: 1.2rem;
+    }
+    .filter-drawer.open { display: block; }
+    .filter-drawer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 1.5rem; }
+    .filter-drawer .aside-btn { font-size: 0.82rem; padding: 5px 6px; }
+    .filter-drawer .aside-btn.active { border-left: 2px solid var(--accent); padding-left: 4px; }
+
+    /* ── SEARCH ── */
+    .search-row { margin-bottom: 1.5rem; }
+    .search-input-wrap input {
+      width: 100%; padding: 10px 16px; border: 1px solid var(--border); border-radius: 2px;
+      font-family: 'Source Serif 4', serif; font-size: 1rem; background: var(--card); color: var(--text);
+      outline: none; transition: border-color 0.2s; -webkit-appearance: none; appearance: none;
+    }
+    .search-input-wrap input:focus { border-color: var(--accent); }
+    .search-input-wrap input::placeholder { color: var(--ter); font-style: italic; }
+    .results-info { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.5px; color: var(--ter); margin-bottom: 1.2rem; text-transform: uppercase; }
+
+    /* ── PUBLICATION LIST ── */
+    .pub-list { display: flex; flex-direction: column; gap: 0; }
+    .pub-card {
+      background: var(--card); border: 1px solid var(--border); border-bottom: none;
+      padding: 1.4rem 1.6rem; cursor: pointer;
+      transition: background 0.15s, border-color 0.2s;
+      display: grid; grid-template-columns: 1fr auto; gap: 0.5rem 1.5rem; align-items: start;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none; -webkit-user-select: none;
+    }
+    .pub-card:first-child { border-radius: 3px 3px 0 0; }
+    .pub-card:last-child { border-bottom: 1px solid var(--border); border-radius: 0 0 3px 3px; }
+    .pub-card:only-child { border-radius: 3px; border-bottom: 1px solid var(--border); }
+    .pub-card:hover { background: var(--color-hover); border-color: var(--accent); }
+    .pub-card:active { background: var(--color-hover); }
+    .pub-card:hover + .pub-card { border-top-color: var(--accent); }
+    .card-top { display: flex; align-items: center; gap: 10px; margin-bottom: 0.5rem; flex-wrap: wrap; }
+    .type-tag { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.8px; text-transform: uppercase; padding: 3px 8px; border-radius: 1px; }
+    .type-tag.article { background: #f0f4f0; color: #2a5a2a; }
+    @media (prefers-color-scheme: dark) { .type-tag.article { background: #1a2e1a; color: #6abf6a; } }
+    .card-theme { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--ter); }
+    .card-title { font-family: 'EB Garamond', serif; font-size: 1.15rem; font-weight: 400; line-height: 1.3; margin-bottom: 0.45rem; }
+    .card-desc { font-size: 0.85rem; color: var(--sub); line-height: 1.65; font-weight: 300; }
+    .card-right { display: flex; flex-direction: column; align-items: flex-end; gap: 0.5rem; min-width: 90px; }
+    .card-level { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.3px; padding: 3px 8px; border-radius: 1px; background: var(--bg); color: var(--sub); border: 1px solid var(--border); white-space: nowrap; }
+    .card-num { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--ter); padding: 2px 6px; border: 1px solid var(--border); border-radius: 1px; white-space: nowrap; }
+    .card-arrow { color: var(--ter); font-size: 1rem; margin-top: auto; }
+
+    /* ── ARTICLE PAGE ── */
+    #article-page { display: none; min-height: 100vh; background: var(--bg); }
+    #article-page.open { display: block; }
+    .article-nav { display: flex; align-items: center; justify-content: space-between; padding: 1rem 2.5rem; background: var(--card); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+    .article-back { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.5px; color: var(--sub); background: none; border: none; cursor: pointer; transition: color 0.15s; padding: 8px 0; -webkit-tap-highlight-color: transparent; }
+    .article-back:hover { color: var(--text); }
+    .article-logo { font-family: 'EB Garamond', serif; font-size: 1.1rem; color: var(--ter); }
+    .article-wrapper { max-width: 700px; margin: 0 auto; padding: 4rem 2.5rem 6rem; }
+    .article-header { margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+    .article-eyebrow { display: flex; align-items: center; gap: 10px; margin-bottom: 1.4rem; flex-wrap: wrap; }
+    .article-eyebrow .type-tag { font-size: 10px; padding: 4px 10px; }
+    .article-eyebrow-theme { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--ter); }
+    .article-eyebrow-level { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--ter); padding: 3px 8px; border: 1px solid var(--border); border-radius: 1px; }
+    .article-title { font-family: 'EB Garamond', serif; font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 400; line-height: 1.1; letter-spacing: -1px; margin-bottom: 1rem; }
+    .article-meta { display: flex; align-items: center; gap: 1rem; }
+    .article-date { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--ter); letter-spacing: 0.3px; }
+    .article-num { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--ter); padding: 2px 8px; border: 1px solid var(--border); border-radius: 1px; }
+
+    /* ── ARTICLE CONTENT ── */
+    .article-content { font-size: 1.02rem; line-height: 1.85; }
+    .article-content p { margin-bottom: 1.4rem; }
+    .article-content h2 { font-family: 'EB Garamond', serif; font-size: 1.5rem; font-weight: 400; margin: 2.5rem 0 1rem; color: var(--text); border-bottom: 1px solid var(--border); padding-bottom: 0.4rem; }
+    .article-content h3 { font-family: 'EB Garamond', serif; font-size: 1.2rem; font-weight: 400; font-style: italic; margin: 2rem 0 0.8rem; color: var(--sub); }
+    .article-content blockquote { padding-left: 1.4rem; border-left: 2px solid var(--accent); font-family: 'EB Garamond', serif; font-size: 1.08rem; font-style: italic; color: var(--sub); line-height: 1.75; margin: 2rem 0; }
+    .article-content blockquote cite { display: block; margin-top: 0.5rem; font-style: normal; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.5px; color: var(--ter); }
+    .article-content .math-display { background: var(--card); border: 1px solid var(--border); border-radius: 3px; padding: 1.2rem 1.5rem; margin: 1.5rem 0; text-align: center; overflow-x: auto; }
+    .article-content .aside-note { background: var(--accent-light); border-left: 3px solid var(--accent); padding: 1rem 1.2rem; margin: 1.5rem 0; border-radius: 0 3px 3px 0; font-size: 0.9rem; color: var(--sub); line-height: 1.7; }
+    .article-content ul, .article-content ol { padding-left: 1.5rem; margin-bottom: 1.2rem; }
+    .article-content li { margin-bottom: 0.4rem; }
+    .article-content strong { font-weight: 500; color: var(--text); }
+    .article-content em { font-style: italic; }
+    .article-content code { font-family: 'JetBrains Mono', monospace; font-size: 0.85em; background: var(--bg); border: 1px solid var(--border); padding: 1px 5px; border-radius: 2px; }
+    .article-content pre { background: var(--card); border: 1px solid var(--border); border-radius: 3px; padding: 1.2rem; overflow-x: auto; margin: 1.5rem 0; }
+    .article-content pre code { background: none; border: none; padding: 0; font-size: 0.85rem; line-height: 1.6; }
+    .article-nav-footer { display: flex; justify-content: space-between; gap: 1rem; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border); flex-wrap: wrap; }
+    .art-nav-btn { font-family: 'Source Serif 4', serif; font-size: 0.85rem; background: none; border: 1px solid var(--border-strong); color: var(--sub); padding: 8px 16px; border-radius: 2px; cursor: pointer; transition: all 0.15s; max-width: 48%; text-align: left; -webkit-tap-highlight-color: transparent; }
+    .art-nav-btn:hover { background: var(--card); border-color: var(--accent); color: var(--text); }
+    .art-nav-btn span { display: block; font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--ter); margin-bottom: 4px; }
+
+    /* ── ABOUT ── */
+    .about-section { max-width: 720px; margin: 0 auto; padding: 4rem 2.5rem; border-top: 1px solid var(--border); }
+    .about-section h2 { font-family: 'EB Garamond', serif; font-size: 1.6rem; font-weight: 400; margin-bottom: 1.2rem; }
+    .about-section p { font-size: 0.95rem; color: var(--sub); line-height: 1.9; font-weight: 300; margin-bottom: 1rem; }
+
+    /* ── FOOTER ── */
+    footer { border-top: 1px solid var(--border); padding: 2rem 2.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; background: var(--card); }
+    .footer-logo { font-family: 'EB Garamond', serif; font-size: 1.1rem; color: var(--text); }
+    .footer-logo em { font-style: italic; color: var(--accent); }
+    .footer-note { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--ter); letter-spacing: 0.3px; }
+
+    /* ── EMPTY STATE ── */
+    .empty-state { text-align: center; padding: 3rem 0; color: var(--ter); font-family: 'EB Garamond', serif; font-style: italic; font-size: 1rem; }
+
+    /* ── RESPONSIVE MOBILE ── */
+    @media (max-width: 720px) {
+      nav { padding: 0.85rem 1.2rem; gap: 0.5rem; }
+      .logo-sub { display: none; }
+      .logo-num { font-size: 1.2rem; }
+      .nav-links { gap: 1rem; }
+      .nav-links a { font-size: 0.82rem; }
+      .nav-fb { font-size: 10px; padding: 5px 10px; }
+
+      .hero { padding: 2.5rem 1.5rem 2rem; }
+      .hero h1 { font-size: 2rem; letter-spacing: -1px; }
+
+      .stats { gap: 2rem; padding: 1.5rem; }
+
+      .page-layout { grid-template-columns: 1fr; padding: 1.2rem 1.2rem 2rem; gap: 0; }
+      .sidebar { display: none; }
+      .filter-toggle-btn { display: flex; }
+
+      .pub-card { padding: 1rem 1rem; gap: 0.4rem 0.8rem; }
+      .card-right { min-width: 65px; }
+      .card-level { display: none; }
+      .card-title { font-size: 1.05rem; }
+      .card-desc { font-size: 0.82rem; }
+
+      .article-nav { padding: 0.85rem 1.2rem; }
+      .article-logo { display: none; }
+      .article-wrapper { padding: 2rem 1.2rem 4rem; }
+      .art-nav-btn { max-width: 48%; font-size: 0.8rem; }
+
+      .about-section { padding: 2.5rem 1.5rem; }
+      footer { padding: 1.5rem 1.2rem; }
+    }
+
+    @media (max-width: 380px) {
+      .card-right { display: none; }
+      .pub-card { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── ARTICLE PAGE ── -->
+<div id="article-page">
+  <nav class="article-nav">
+    <button class="article-back" onclick="closeArticle()">← Retour aux publications</button>
+    <div class="article-logo">La Planète 1729</div>
+  </nav>
+  <div class="article-wrapper">
+    <header class="article-header">
+      <div class="article-eyebrow">
+        <span id="ap-tag" class="type-tag article">Article</span>
+        <span id="ap-theme" class="article-eyebrow-theme"></span>
+        <span id="ap-level" class="article-eyebrow-level"></span>
+      </div>
+      <h1 class="article-title" id="ap-title"></h1>
+      <div class="article-meta">
+        <span class="article-num" id="ap-num"></span>
+        <span class="article-date" id="ap-date"></span>
+      </div>
+    </header>
+    <div class="article-content" id="ap-content"></div>
+    <div class="article-nav-footer" id="ap-nav-footer"></div>
+  </div>
+</div>
+
+<!-- ── MAIN SITE ── -->
+<div id="main-wrapper">
+  <nav>
+    <div class="logo">
+      <span class="logo-num">La Planète 1729</span>
+      <span class="logo-sub">Mathématiques à travers l'histoire</span>
+    </div>
+    <div class="nav-links">
+      <a onclick="scrollToPublications()">Publications</a>
+      <a onclick="scrollToAbout()">À propos</a>
+    </div>
+    <button class="nav-fb" onclick="window.open('https://www.facebook.com','_blank')">
+      Facebook ↗
+    </button>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-eyebrow">
+      <div class="eyebrow-line"></div>
+      <span class="eyebrow-text">La Planète 1729</span>
+    </div>
+    <h1>Les mathématiques dévoilent leurs secrets<br><em>à travers leur histoire</em></h1>
+    <p class="hero-body">
+      Publications mathématiques destinées aux lycéens, aux étudiants et aux enseignants.
+      Chaque article explore un objet mathématique dans son contexte historique — des équations de Pell
+      aux entiers de Gauss, du calcul infinitésimal à la théorie des groupes.
+    </p>
+    <div class="hero-quote">
+      « J'ai vu plus loin que les autres parce que je me suis juché sur les épaules de géants. »
+      <cite>— Isaac Newton</cite>
+    </div>
+    <div class="hero-actions">
+      <button class="btn-primary" onclick="scrollToPublications()">Explorer les publications</button>
+      <button class="btn-ghost" onclick="scrollToAbout()">À propos du projet</button>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div class="stat"><div class="stat-n" id="count-total">0</div><div class="stat-l">Publications</div></div>
+    <div class="stat"><div class="stat-n" id="count-themes">0</div><div class="stat-l">Thèmes</div></div>
+    <div class="stat"><div class="stat-n" id="count-levels">5</div><div class="stat-l">Niveaux</div></div>
+  </section>
+
+  <div class="page-layout" id="publications">
+    <!-- SIDEBAR desktop uniquement -->
+    <aside class="sidebar">
+      <div class="aside-section">
+        <div class="aside-label">Thème</div>
+        <div id="theme-filters"></div>
+      </div>
+      <div class="aside-section">
+        <div class="aside-label">Niveau</div>
+        <div id="level-filters"></div>
+      </div>
+    </aside>
+
+    <main>
+      <!-- Bouton tiroir filtres (mobile uniquement) -->
+      <button class="filter-toggle-btn" id="filter-toggle-btn" onclick="toggleFilterDrawer()">
+        ⊞ Filtrer par thème / niveau
+        <span class="filter-badge" id="filter-badge" style="display:none">actif</span>
+      </button>
+
+      <!-- Tiroir filtres mobile -->
+      <div class="filter-drawer" id="filter-drawer">
+        <div class="filter-drawer-grid">
+          <div>
+            <div class="aside-label">Thème</div>
+            <div id="theme-filters-mobile"></div>
+          </div>
+          <div>
+            <div class="aside-label">Niveau</div>
+            <div id="level-filters-mobile"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="search-row">
+        <div class="search-input-wrap">
+          <input type="text" id="search" placeholder="Rechercher une publication…" oninput="render()">
+        </div>
+      </div>
+      <div class="results-info" id="results-info"></div>
+      <div class="pub-list" id="pub-list"></div>
+    </main>
+  </div>
+
+  <section class="about-section" id="about">
+    <h2>À propos du projet</h2>
+    <p>
+      La Planète 1729 est un espace de partage mathématique fondé sur la conviction que les mathématiques
+      se comprennent mieux lorsqu'on les explore à travers leur histoire. Les publications couvrent
+      un large spectre — de l'arithmétique élémentaire au collège jusqu'aux structures algébriques
+      avancées — en passant par le calcul infinitésimal, la géométrie euclidienne, la théorie des nombres
+      et la probabilité.
+    </p>
+    <p>
+      Le nom « 1729 » rend hommage à la célèbre anecdote entre Hardy et Ramanujan : 1729 est le plus
+      petit entier expressible comme somme de deux cubes de deux façons différentes
+      (1³ + 12³ = 9³ + 10³). Un nombre en apparence ordinaire qui cache une beauté profonde —
+      à l'image de toutes les mathématiques.
+    </p>
+    <p>
+      Les articles intègrent des formules mathématiques en LaTeX, des algorithmes Python, et
+      s'appuient sur une bibliographie riche allant de Spivak à Stillwell, de Polya à Godement.
+    </p>
+  </section>
+
+  <footer>
+    <div class="footer-logo">La Planète <em>1729</em></div>
+    <div class="footer-note">Mathématiques · Histoire · Enseignement</div>
+  </footer>
+</div>
+
+<script>
+// ─────────────────────────────────────────────
+//  DONNÉES — 101 publications
+// ─────────────────────────────────────────────
+const DATA = [
+  { num: 1, title: "L'équation de Pell, structures algébriques et l'histoire des mathématiques", theme: "Théorie des nombres", level: "Lycée / Prépa", desc: "Des irrationalités grecques aux entiers de Gauss, en passant par Brahmagupta et l'équation x²−2y²=1. Comment la multiplication dans ℤ[√2] engendre toutes les solutions.", hasContent: true },
+  { num: 2, title: "Examen blanc de spécialité mathématiques (première)", theme: "Pédagogie", level: "Lycée", desc: "Partage d'un examen blanc exigeant accompagné d'une feuille de route pour identifier les compétences à travailler. Réflexions sur le niveau d'exigence et l'accessibilité.", hasContent: true },
+  { num: 3, title: "Mesure d'un angle et définition rigoureuse des fonctions trigonométriques", theme: "Analyse", level: "Lycée / Prépa", desc: "Qu'est-ce que mesurer un angle ? De la mesure en degrés aux radians, en passant par les aires de secteurs, la longueur des courbes et la définition de cos et sin via les intégrales.", hasContent: true },
+  { num: 4, title: "Mesure des aires : du rectangle à l'intégrale de Riemann", theme: "Analyse", level: "Lycée / Prépa", desc: "Pourquoi l'aire d'un rectangle vaut L×ℓ ? Construction rigoureuse de la mesure, additivité, invariance par isométrie, et le théorème des gendarmes pour les côtés irrationnels.", hasContent: true },
+  { num: 5, title: "Le nombre π : quadrature du cercle et quadratrice de Dinostrate", theme: "Géométrie", level: "Lycée / Prépa", desc: "π₁ vs π₂ : circumférence et aire. Archimède, Euclide, Eudoxe. La quadratrice d'Hippias d'Élis et la valeur AI = 2/π.", hasContent: true },
+  { num: 6, title: "Qu'est-ce qu'une fonction ? La dérivée comme mesure de sensibilité", theme: "Analyse", level: "Lycée", desc: "Réduire les fonctions à des programmes de calcul est une erreur pédagogique. Le coefficient directeur comme taux d'évolution, la dérivée comme sensibilité locale.", hasContent: true },
+  { num: 7, title: "Genèse des fonctions logarithme et exponentielle", theme: "Analyse", level: "Lycée / Prépa", desc: "De Neper à Briggs, construction pas-à-pas des puissances rationnelles puis réelles. Suite de Héron, théorème des suites monotones, et définition naturelle de ln.", hasContent: true },
+  { num: 8, title: "Examen blanc de terminale : suite convergeant vers ln(x)", theme: "Pédagogie", level: "Terminale", desc: "Partage d'un exercice de bac sur les suites convergentes vers ln(x). La méthode de Briggs via les extractions successives de racines carrées et l'erreur d'approximation.", hasContent: true },
+  { num: 9, title: "Évaluation par contrat d'apprentissage (Antibi) et fractions continues", theme: "Pédagogie", level: "Terminale", desc: "Principe Antibi appliqué à l'évaluation. Lien entre le développement en fraction continue de √5 et les suites récurrentes. Points fixes et homographies.", hasContent: true },
+  { num: 10, title: "Probabilité qu'une équation quadratique aléatoire ait des solutions réelles", theme: "Probabilités", level: "Terminale / L1", desc: "P(B²−4C ≥ 0) = 1/12. Origine dans les travaux de FitzGerald sur les circuits LC. La parabole C = B²/4 et le calcul de l'aire via une intégrale.", hasContent: true },
+  { num: 11, title: "Bibliographie mathématique commentée — 43 ouvrages", theme: "Ressources", level: "Tous niveaux", desc: "Liste non exhaustive de 43 ouvrages de référence, de Stillwell à Spivak, Polya, Godement, Needham, Nahin, Tao, Dunham et bien d'autres.", hasContent: true },
+  { num: 12, title: "Fractales de Julia et points fixes en Python", theme: "Informatique & Maths", level: "Lycée / L1", desc: "Les ensembles de Julia comme outil pour explorer l'analyse complexe et les itérations. Visualisation en Python. Lien avec la dynamique des systèmes chaotiques.", hasContent: true },
+  { num: 13, title: "Suites de Pell, fractions continues et le baccalauréat 2021", theme: "Théorie des nombres", level: "Terminale / Prépa", desc: "Origine des suites (pₙ, qₙ) du sujet de bac à partir des fractions continues de √2 et de l'équation x²−2y²=±1. Lien avec la norme de ℤ[√2].", hasContent: true },
+  { num: 14, title: "Genèse des nombres réels : irrationalité, fractions continues et pentagone", theme: "Fondements", level: "Lycée / Prépa", desc: "Hippase de Métaponte, commensurabilité et algorithme d'Euclide. Le pentagramme pythagoricien et la démonstration géométrique de l'irrationalité du nombre d'or.", hasContent: true },
+  { num: 15, title: "Les nombres réels sont fictifs — excursion dans les processus infinis", theme: "Fondements", level: "Lycée / Grand public", desc: "Annonce d'une conférence sur la genèse des nombres réels. π, le cercle parfait, la droite réelle comme construction de l'esprit humain. Programme de la journée.", hasContent: true },
+  { num: 16, title: "Cours sur la convexité — terminale spécialité", theme: "Analyse", level: "Terminale", desc: "Cours de convexité pour trois groupes d'élèves. Dérivée seconde et allure de courbe. Réflexions sur le bagage minimal pour aborder les sciences à l'université.", hasContent: true },
+  { num: 17, title: "Fractions continues et équations de Pell au collège (brevet)", theme: "Théorie des nombres", level: "Collège / Lycée", desc: "Transposition des fractions continues en classe de 3ème. √5, approximations rationnelles et solutions de x²−5y²=1. Le livre de Olds comme référence.", hasContent: true },
+  { num: 18, title: "Fermat : l'équation x⁴+y⁴=z² n'a pas de solution entière", theme: "Théorie des nombres", level: "Prépa / L1", desc: "Machine euclidienne : triplets pythagoriciens primitifs et descente infinie. Démonstration que x⁴+y⁴=z² n'a pas de solution non triviale, impliquant Fermat pour n=4.", hasContent: true },
+  { num: 19, title: "Carrés en progression arithmétique et descente infinie (Fermat)", theme: "Théorie des nombres", level: "Prépa / L1", desc: "Il n'existe pas 3 carrés d'entiers en progression arithmétique dont la différence est un carré. Lien avec les triangles pythagoriciens d'aire carrée parfaite.", hasContent: true },
+  { num: 20, title: "Triangle pythagoricien d'aire carrée parfaite — la machine euclidienne", theme: "Théorie des nombres", level: "Prépa / L1", desc: "Fermat et la descente infinie : si x⁴+y⁴=z⁴ a une solution, on peut construire un triangle pythagoricien plus petit d'aire carrée — une contradiction.", hasContent: true },
+  { num: 21, title: "Nombres parfaits pairs — le théorème d'Euler via la fonction σ", theme: "Théorie des nombres", level: "Terminale / Prépa", desc: "Euler démontre que tout nombre parfait pair est de la forme 2^(n-1)(2ⁿ−1). La fonction sigma, ses propriétés multiplicatives, et la preuve complète.", hasContent: true },
+  { num: 22, title: "Construction de l'heptadécagone régulier de Gauss", theme: "Géométrie algébrique", level: "Prépa / L1", desc: "Gauss à 19 ans construit le 17-gone en combinant cyclotomie et corps de nombres. Calcul explicite de cos(2π/17) via les résidus quadratiques mod 17.", hasContent: true },
+  { num: 23, title: "Racines n-ièmes de l'unité, polygones réguliers et pentagone", theme: "Géométrie algébrique", level: "Terminale / Prépa", desc: "De Moivre, Euler et la cyclotomie. Construction du pentagone régulier via les sommes de Gauss. Lien avec les sous-groupes du groupe de Galois de Q(ζ₅).", hasContent: true },
+  { num: 24, title: "√−5 et la non-unicité de la factorisation dans ℤ[√−5]", theme: "Algèbre", level: "Prépa / L2", desc: "Fermat et la représentation des entiers comme somme de deux carrés. Formes quadratiques de Lagrange, nombre de classes h(D), et l'origine de ℤ[√−5] dans tout cela.", hasContent: true },
+  { num: 25, title: "Cours d'algèbre linéaire de Gilbert Strang (MIT)", theme: "Ressources", level: "L1 / L2", desc: "Présentation du cours d'algèbre linéaire de Strang, l'une des meilleures introductions au sujet. Accessible dès le lycée. Lien vers la chaîne YouTube du MIT.", hasContent: true },
+  { num: 26, title: "Critère d'alignement de trois points et équation de la médiatrice", theme: "Géométrie", level: "Terminale", desc: "Vision dynamique : envoyer (AB) sur l'axe réel via f(z)=(z−z_A)/(z_B−z_A). Le critère ℝ pour l'alignement et l'équation élégante de la médiatrice en nombres complexes.", hasContent: true },
+  { num: 27, title: "Preuve visuelle du théorème de Pythagore (Euclide)", theme: "Géométrie", level: "Collège / Lycée", desc: "Comparaison entre la preuve statique et l'animation de Caltech (1988). Rotations, triangles de même aire, et la beauté d'une démonstration rendue vivante.", hasContent: true },
+  { num: 28, title: "Neurosciences et apprentissage des mathématiques — Dehaene", theme: "Pédagogie", level: "Grand public", desc: "Conférence de Stanislas Dehaene sur l'apprentissage des maths. Dyscalculie, jeux vidéo éducatifs (La Course aux Nombres), et choix pédagogiques discutables.", hasContent: true },
+  { num: 29, title: "Cryptographie affine, arithmétique modulaire et indicatrice d'Euler", theme: "Théorie des nombres", level: "Lycée / L1", desc: "Le chiffrement affine E(m) ≡ am+b (mod n) comme motivation pour les congruences, l'identité de Bézout, l'algorithme d'Euclide étendu et la fonction φ d'Euler.", hasContent: true },
+  { num: 30, title: "Ressources Python pour les mathématiques au lycée — Arnaud Bodin", theme: "Informatique & Maths", level: "Lycée / L1", desc: "Projets Python de Bodin (Lille) : cryptographie, fractales, calcul intégral, matrices, réseaux de neurones, mécanique newtonienne. Liens vers les livres Exo7.", hasContent: true },
+  { num: 31, title: "Contrôle de mathématiques — première spécialité (dérivation)", theme: "Pédagogie", level: "Première", desc: "Partage d'un contrôle sur la dérivation et la géométrie analytique. Réflexion sur l'évaluation par contrat d'apprentissage et les ressources de Paul Milan.", hasContent: true },
+  { num: 32, title: "Probabilité qu'un triangle dans un rectangle soit obtus", theme: "Probabilités", level: "Lycée / L1", desc: "Problème de Nahin/Langford (1969) : P = 97/150 + π/40 pour un carré unité. Simulation Python, théorème d'Al-Kashi et animation des triangles obtenus.", hasContent: true },
+  { num: 33, title: "Apprendre à démontrer avec Adam (13 ans) — géométrie euclidienne", theme: "Pédagogie", level: "Collège", desc: "Rédiger une démonstration n'est pas trivial. Cas d'égalité des triangles, programme d'Erlangen de Felix Klein, et l'exercice de la bissectrice via OA=OC, OB=OD.", hasContent: true },
+  { num: 34, title: "Théorème fondamental de l'arithmétique — pourquoi une preuve ?", theme: "Théorie des nombres", level: "Lycée / L1", desc: "L'unicité de la décomposition en facteurs premiers n'est pas évidente ! Les entiers 3k+1 et ℤ[√−5] comme contre-exemples instructifs. Le lemme d'Euclide.", hasContent: true },
+  { num: 35, title: "Fonctions génératrices et théorème de Van Aubel (nombres complexes)", theme: "Algèbre", level: "Terminale / Prépa", desc: "Les fonctions génératrices comme hacks mathématiques. Le théorème de Van Aubel démontré en deux lignes complexes : A + iB = (a+b+c+d)(1+i) = 0.", hasContent: true },
+  { num: 36, title: "Exercices de Wacksmann — polynômes et discriminant", theme: "Algèbre", level: "Première / Terminale", desc: "f(x) = (x−a)(x−b) + (x−a)(x−c) + (x−b)(x−c) a deux racines distinctes. Stratégie : discriminant = 2[(a−b)² + (a−c)² + (b−c)²] > 0.", hasContent: true },
+  { num: 37, title: "Triangle équilatéral inscrit dans le cercle unité — nombres complexes", theme: "Géométrie", level: "Terminale", desc: "Si |z₁|=|z₂|=|z₃|=1 et z₁+z₂+z₃=0, alors z₁²+z₂²+z₃²=0. Argument géométrique via la rotation 2π/3 et preuve algébrique par la conjugaison.", hasContent: true },
+  { num: 38, title: "Al-Bīrūnī mesure le rayon de la Terre à l'aide d'une montagne", theme: "Géométrie", level: "Lycée / Grand public", desc: "Trigonométrie sphérique et géométrie euclidienne au service de la géodésie. La méthode ingénieuse d'al-Bīrūnī : angle de dépression θ = 0.56667° → r = 6238 km.", hasContent: true },
+  { num: 39, title: "Nombres parfaits impairs — le théorème de Sylvester", theme: "Théorie des nombres", level: "Prépa / L1", desc: "Un nombre parfait impair doit avoir au moins 3 facteurs premiers distincts (Sylvester). La fonction sigma et Python pour tester σ(945)=1920. Un problème ouvert depuis Euler.", hasContent: true },
+  { num: 40, title: "Comment Euler a découvert sa fonction σ — produits infinis et dérivées logarithmiques", theme: "Théorie des nombres", level: "Prépa / L1", desc: "L'Opera Omnia d'Euler : produit infini (1−x)(1−x²)…, dérivée logarithmique, et l'apparition magique de σ(n) dans les coefficients. La formule de récurrence de σ.", hasContent: true },
+  { num: 41, title: "Cours sur les nombres complexes — option mathématiques expertes", theme: "Algèbre", level: "Terminale Expertes", desc: "Genèse algébrique des nombres complexes pour la terminale expertes. Histoire du sujet, équation x²+1=0 et la construction formelle ℝ[X]/(X²+1).", hasContent: true },
+  { num: 42, title: "Petit théorème de Fermat et nombres de Mersenne", theme: "Théorie des nombres", level: "Lycée / Prépa", desc: "Fermat cherche les diviseurs premiers de 2ⁿ−1. Son petit théorème : p | 2ⁿ−1 ⟹ p ≡ 1 (mod n). Application : 223 divise 2³⁷−1. Nombres de Fermat F₅ divisible par 641.", hasContent: true },
+  { num: 43, title: "Problème de poursuite : n chiens sur un polygone régulier", theme: "Probabilités", level: "Lycée / L1", desc: "Chaque chien poursuit le suivant à vitesse constante. Quelle courbe décrivent-ils ? Lien avec les équations différentielles et la spirale logarithmique.", hasContent: true },
+  { num: 44, title: "Le calcul infinitésimal et la lutte contre le VIH (Strogatz)", theme: "Analyse appliquée", level: "Lycée / Grand public", desc: "Extrait du livre de Strogatz : dV/dt = P − cV. Ho et Perelson (1995) découvrent grâce aux équations différentielles que 10 milliards de virions sont produits par jour.", hasContent: true },
+  { num: 45, title: "Méthode des cordes-tangentes de Diophante et triplets pythagoriciens", theme: "Géométrie algébrique", level: "Prépa / L1", desc: "Paramétrisation rationnelle du cercle unité. Les droites de pente t passant par (−1,0) donnent (x,y) = ((1−t²)/(1+t²), 2t/(1+t²)), d'où la formule d'Euclide sans arithmétique.", hasContent: true },
+  { num: 46, title: "Parallélogrammes, losanges, et apprendre à démontrer au lycée", theme: "Géométrie", level: "Seconde / Collège", desc: "Pourquoi les diagonales d'un losange sont-elles perpendiculaires ? Exercices de géométrie avec Adam (12 ans) sur les symétries, milieux et bissectrices.", hasContent: true },
+  { num: 47, title: "Le nombre π : quadrature du cercle et quadratrice de Dinostrate (bis)", theme: "Géométrie", level: "Lycée / Prépa", desc: "Republication enrichie de la Publication 5. Archimède, Eudoxe, Hippias d'Élis, et la valeur AI = 2/π via la limite θ/sin(θ) → 1.", hasContent: false },
+  { num: 48, title: "Adam résout des équations du premier degré par tâtonnement", theme: "Pédagogie", level: "Collège", desc: "Adam (13 ans) résout 24x=12(6x−4) par inspection, puis 5(1+4x)−11=12x−2 par tâtonnement. Liberté intellectuelle et méthode des lapins-poules de Polya.", hasContent: true },
+  { num: 49, title: "La fraction comme proportion — Adam et l'équation x = (2/3)x + 4", theme: "Pédagogie", level: "Collège", desc: "Adam résout en une fraction de seconde : x = (2/3)x + 4 → x = 12. L'image mentale de la fraction comme proportion contre la manipulation formelle abstraite.", hasContent: true },
+  { num: 50, title: "Système d'équations avec Adam : les balances et les lapins-poules", theme: "Pédagogie", level: "Collège", desc: "Adam traduit 2x+4y=136 et x+y=50 en balances dessinées. Méthode cartésienne et élimination visuelle. La soustraction tombe comme une pomme mûre.", hasContent: true },
+  { num: 51, title: "Problème de la boîte en carton — maximum d'une cubique", theme: "Analyse", level: "Seconde / Première", desc: "Volume maximal d'une boîte sans couvercle. Méthode de Fermat, extrema locaux et fonctions pathologiques oscillantes. Lien avec la dérivée.", hasContent: true },
+  { num: 52, title: "Boîte de conserve — surface minimale pour volume donné", theme: "Analyse", level: "Seconde / Première", desc: "Optimisation de la surface d'une boîte cylindrique. Méthode de la tangente de Fermat. Controverse Berkeley-Newton sur les infiniment petits.", hasContent: true },
+  { num: 53, title: "Casserole à volume maximal — la méthode de Fermat", theme: "Analyse", level: "Seconde / Première", desc: "Trouver h/r optimal pour une casserole d'aire A donnée. Introduction au calcul infinitésimal par les problèmes de maxima/minima, sans les limites epsilon-delta.", hasContent: true },
+  { num: 54, title: "Angle maximal pour photographier une façade — cercles tangents", theme: "Géométrie", level: "Lycée / Prépa", desc: "Où se placer sur une droite L pour que l'angle PXQ soit maximal ? Le cercle tangent à L passant par P et Q, construit par homothétie. Raisonnement plausible de Polya.", hasContent: true },
+  { num: 55, title: "L'ellipse comme miroir et la lithotripsie médicale", theme: "Géométrie", level: "Lycée / Prépa", desc: "Le problème de Héron et les ellipses tangentes. Propriété optique : tout rayon d'un foyer rejoint l'autre après réflexion. Galeries de chuchotements et lithotripsie.", hasContent: true },
+  { num: 56, title: "Problème de Héron — le chemin le plus court via un miroir", theme: "Géométrie", level: "Lycée", desc: "Premier épisode du calcul infinitésimal : Héron d'Alexandrie et la réflexion lumineuse. Le symétrique P' de P par rapport à L donne le chemin optimal PX+XQ.", hasContent: true },
+  { num: 57, title: "Défi de construction : AX = XY = YB dans un triangle", theme: "Géométrie", level: "Lycée / Prépa", desc: "Méthode de Polya : imaginer le problème résolu. Losange AZYX, triangle isocèle semblable, homothétie de centre B. La construction par figure auxiliaire similaire.", hasContent: true },
+  { num: 58, title: "Inscrire deux cercles égaux tangents dans un triangle", theme: "Géométrie", level: "Lycée / Prépa", desc: "Construire deux cercles identiques tangents aux côtés de ABC. Méthode : partir de deux cercles libres, former un triangle A'B'C' homothétique, puis envoyer sur ABC.", hasContent: true },
+  { num: 59, title: "Inscrire un losange d'angle donné dans un triangle ABC", theme: "Géométrie", level: "Lycée / Prépa", desc: "Ignorer une condition, construire un losange quelconque vérifiant les autres, puis appliquer l'homothétie de centre A envoyant Q sur [BC]. Élégant, c'est magique.", hasContent: true },
+  { num: 60, title: "Construire un carré connaissant côté + diagonale", theme: "Géométrie", level: "Lycée / Prépa", desc: "Tous les carrés sont semblables : quatrième proportionnelle constructible. Défi bonus : inscrire un cercle dans un angle passant par un point M donné.", hasContent: true },
+  { num: 61, title: "Défis de construction : angle, hauteurs et médianes", theme: "Géométrie", level: "Lycée / Prépa", desc: "Construire ABC sachant l'angle en A, h_b et h_c ; ou sachant BC, h_b et m_b. L'importance de ne pas persévérer sur une mauvaise piste.", hasContent: false },
+  { num: 62, title: "Construction d'un triangle connaissant deux hauteurs et une médiane", theme: "Géométrie", level: "Lycée / Prépa", desc: "Exercice instructif : construire ABC sachant h_b, h_c et la médiane issue de A. Solution détaillée et lien PDF.", hasContent: false },
+  { num: 63, title: "Inscrire un cercle dans une figure formée de deux arcs", theme: "Géométrie", level: "Lycée / Prépa", desc: "Cercle tangent aux deux arcs de rayon AB centrés en A et B. Approche analytique de Descartes-Fermat. Polya : tout problème de construction se réduit à un problème algébrique.", hasContent: false },
+  { num: 64, title: "Droite DE parallèle à BC avec DE = BD + EC", theme: "Géométrie", level: "Lycée", desc: "Construire une droite parallèle à BC coupant AB en D et AC en E telle que DE = BD + EC. Éléments auxiliaires et configuration familière.", hasContent: false },
+  { num: 65, title: "Construire un triangle sachant l'angle en A, BC et AB+AC", theme: "Géométrie", level: "Lycée", desc: "Exercice accessible avec figure auxiliaire. Se poser les bonnes questions pour avancer vers une solution constructive.", hasContent: false },
+  { num: 66, title: "Construire un triangle sachant l'angle en A, BC et le rayon inscrit r", theme: "Géométrie", level: "Lycée / Prépa", desc: "Arc capable, tangente par un point extérieur, et connexion de ces connaissances. Grande valeur formative pour l'esprit.", hasContent: false },
+  { num: 67, title: "Construire un triangle sachant l'angle en A, la hauteur et le périmètre", theme: "Géométrie", level: "Lycée / Prépa", desc: "Exercice très instructif de Polya (How to Solve It). Éléments auxiliaires et remarque pédagogique : l'élève intelligent veut comprendre le motif des étapes.", hasContent: false },
+  { num: 68, title: "Euler : lien entre la somme de Leibniz (π/4) et le défi de Bernoulli (π²/6)", theme: "Analyse", level: "Prépa / L1", desc: "En combinant formellement logarithmes, dérivées et séries, Euler unifie π/4 et π²/6. Extrait de Dunham, The Calculus Gallery.", hasContent: false },
+  { num: 69, title: "La géométrie euclidienne pour apprendre à raisonner", theme: "Pédagogie", level: "Collège / Lycée", desc: "Republication sur la valeur formative de la constructibilité. Newton, Gauss, Euler et leur formation. Quatre exercices classiques de construction au compas.", hasContent: true },
+  { num: 70, title: "Remplacer la vision spatiale par une machine algébrique", theme: "Analyse", level: "Lycée / Prépa", desc: "Article PDF sur le calcul de volumes sans visualisation 3D. La machine algébrique peut-elle remplacer l'intuition géométrique ?", hasContent: false },
+  { num: 71, title: "Géométrie euclidienne au XXIe siècle — rapport de la commission Kahane", theme: "Pédagogie", level: "Grand public", desc: "Le rapport Kahane et le programme d'Erlangen de Felix Klein. Analyse savante de l'enseignement élémentaire de la géométrie et de la théorie des invariants.", hasContent: false },
+  { num: 72, title: "Adam résout des équations sans algèbre formelle — les fractions comme images", theme: "Pédagogie", level: "Collège", desc: "Adam (11 ans) : x−204 = x/3 → 306 instantanément ! Et 123+x = 567−x → (567−123)/2. Les images mentales numériques avant la manipulation formelle.", hasContent: true },
+  { num: 73, title: "John Stillwell — algèbre, géométrie et histoire des mathématiques", theme: "Ressources", level: "Tous niveaux", desc: "Hommage à Stillwell. Sa vision : l'algèbre est née de la géométrie et doit y rester connectée. Extrait de Elements of Algebra sur les problèmes de constructibilité.", hasContent: true },
+  { num: 74, title: "Sommes télescopiques des inverses des nombres figurés", theme: "Analyse", level: "Lycée / Prépa", desc: "La somme des inverses des nombres tétraédriques vaut 3/2. Plus généralement, les nombres figurés de dimension k donnent k/(k−1). Télescopage et récurrence.", hasContent: true },
+  { num: 75, title: "Huygens, Leibniz et la somme télescopique des nombres triangulaires", theme: "Analyse", level: "Lycée", desc: "1/(1×2) + 1/(2×3) + … = 1. La décomposition 1/n(n+1) = 1/n − 1/(n+1) et ses conséquences fondamentales sur le lien différentiation-intégration.", hasContent: true },
+  { num: 76, title: "Leibniz et le télescopage — origine du calcul infinitésimal", theme: "Analyse", level: "Lycée / Prépa", desc: "Les sommes télescopiques et les différences successives. Somme des carrés, série géométrique, et le lien profond entre les suites de Leibniz et l'intégrale.", hasContent: true },
+  { num: 77, title: "Calcul d'aires et volumes à la main avant l'intégrale — Serge Lang", theme: "Analyse", level: "Lycée / Prépa", desc: "Republication d'un article inspiré des conférences de Serge Lang en 1982. Calculer des volumes géométriques sans le théorème fondamental de l'intégration.", hasContent: false },
+  { num: 78, title: "Fermat, Pascal, nombres figurés et quadrature des paraboles", theme: "Analyse", level: "Lycée / Prépa", desc: "Les nombres figurés permettent de calculer ∫₀ᵃ xᵏdx = a^(k+1)/(k+1) sans le théorème fondamental. Méthode ingénieuse de Fermat pour contourner les sommes 1ᵏ+…+nᵏ.", hasContent: false },
+  { num: 79, title: "Leibniz croyait que d(uv) = du·dv — le triangle arithmétique de Pascal", theme: "Analyse", level: "Lycée / Prépa", desc: "Erreur célèbre de Leibniz. Le triangle de Pascal comme tableau des nombres figurés. Algorithme Python pour le générer. Arnold : Newton n'aurait pas fait cette erreur.", hasContent: true },
+  { num: 80, title: "Méthode de Monte-Carlo pour approcher π en Python", theme: "Informatique & Maths", level: "Lycée / L1", desc: "Simulation aléatoire : tirer des couples (x,y) et compter ceux tombant dans le quart de disque. Approche de π/4. La loi des grands nombres en action.", hasContent: true },
+  { num: 81, title: "Décomposition d'un entier en somme de 4 carrés — algorithme probabiliste", theme: "Théorie des nombres", level: "Lycée / L1", desc: "Théorème de Lagrange (4 carrés) et algorithme Monte-Carlo en Python. 1 234 567 → 2 millions d'itérations vs 1 milliard pour la force brute. Le hasard gagne !", hasContent: true },
+  { num: 82, title: "Nombres tétraédriques et formule n(n+1)(n+2)/6", theme: "Algèbre", level: "Lycée", desc: "Découverte expérimentale de la formule des nombres tétraédriques. Quotient par le dernier terme triangulaire → (n+2)/3. Fermat et les nombres figurés en général.", hasContent: true },
+  { num: 83, title: "Nombres polygonaux et le théorème de Fermat généralisé (Cauchy 1813)", theme: "Théorie des nombres", level: "Lycée / L1", desc: "Nombres triangulaires, carrés, pentagonaux. Conjecture de Fermat : tout entier est somme de k nombres k-gonaux. Gauss (triangulaires, 1796), Lagrange (carrés, 1770).", hasContent: true },
+  { num: 84, title: "Somme des carrés des entiers impairs — investigation expérimentale", theme: "Algèbre", level: "Lycée", desc: "1²+3²+…+(2n−1)² = n(2n−1)(2n+1)/3. Découverte par inspection successive des rapports. Python pour guider et une preuve instructive sans récurrence formelle.", hasContent: true },
+  { num: 85, title: "Sommes alternées de carrés et nombres triangulaires", theme: "Algèbre", level: "Lycée", desc: "1²−2²+3²−…±n² = ±n(n+1)/2. Découverte par calcul, identité a²−b²=(a−b)(a+b) appliquée intelligemment. Catastrophe pédagogique de la récurrence aveugle.", hasContent: true },
+  { num: 86, title: "Nicomaque de Gérase : les cubes comme sommes d'impairs consécutifs", theme: "Algèbre", level: "Lycée", desc: "n³ est la somme des n impairs consécutifs commençant à n(n−1)+1. Démonstration via le premier terme et la somme des impairs. Expérimentation Python.", hasContent: true },
+  { num: 87, title: "Galilée (1615) : rapport 1/3 entre premiers impairs et suivants", theme: "Algèbre", level: "Lycée", desc: "(1²+3²+…+(2n−1)²) / ((2n+1)²+…+(4n−1)²) = 1/3. Formulation littérale, Python, démonstration. La somme dénominateur = 3n².", hasContent: true },
+  { num: 88, title: "Somme des carrés des entiers naturels — investigation S'/S = (2n+1)/3", theme: "Algèbre", level: "Lycée / Seconde", desc: "1²+2²+…+n² = n(n+1)(2n+1)/6. Découverte par le rapport S'/S. Python pour les premières valeurs. Variables en programmation et la boucle for.", hasContent: true },
+  { num: 89, title: "Si n est impair, n²−1 est divisible par 8 — deux méthodes", theme: "Arithmétique", level: "Seconde", desc: "Méthode 1 : algèbre formelle. Méthode 2 (instructive) : les quotients par 8 sont les nombres triangulaires. Application aux triplets pythagoriciens primitifs.", hasContent: true },
+  { num: 90, title: "Polya : représentations de 4u comme somme de 4 carrés impairs = σ(u)", theme: "Théorie des nombres", level: "Lycée / L1", desc: "Extrait traduit de Mathematics and Plausible Reasoning I. Si u est impair, le nombre de représentations de 4u en somme de 4 carrés impairs vaut σ(u). Gauss.", hasContent: false },
+  { num: 91, title: "x²−5y³=2 n'a aucune solution entière — machine modulaire", theme: "Arithmétique", level: "Lycée", desc: "Sur une horloge de 5 heures : x² ≡ 2 (mod 5) est impossible. La réduction modulaire ramène l'infini à 5 cas. Introduction naturelle aux congruences.", hasContent: true },
+  { num: 92, title: "Terence Tao — Solving Mathematical Problems (à 16 ans)", theme: "Ressources", level: "Lycée / Prépa", desc: "Présentation du livre de Tao, écrit à 16 ans. Traduction et algorithmes Python d'un problème de combinatoire résolu avec des techniques lycée. Un régal !", hasContent: false },
+  { num: 93, title: "Si n+1 est divisible par 4, alors n²+3 aussi — deux approches", theme: "Arithmétique", level: "Seconde", desc: "Méthode formelle vs méthode expérimentale. Le reste de n²+3 par n+1 est toujours 4. Donc n²+3 = (n−1)(n+1) + 4, somme de deux multiples de 4. Valable pour tout n impair.", hasContent: true },
+  { num: 94, title: "Équation de Pell x²−2y²=1 en classe de seconde", theme: "Théorie des nombres", level: "Seconde", desc: "Introduction élémentaire : trouver les solutions par tâtonnement et Python. Les rapports x/y convergent vers √2. Modulo 2 et la parite des solutions.", hasContent: true },
+  { num: 95, title: "La machine algébrique de Descartes contre l'âme géométrique", theme: "Pédagogie", level: "Collège / Lycée", desc: "Atiyah : « le diable nous a donné l'algèbre en échange de la géométrie ». Deux problèmes résolus algébriquement et géométriquement. Les carreaux vs les inconnues.", hasContent: true },
+  { num: 96, title: "Équations produit nul — nature des nombres et inverses modulaires", theme: "Algèbre", level: "Seconde", desc: "ab=0 implique a=0 ou b=0 : pourquoi ? L'horloge de 12h : 3×4=0 sans que 3 ni 4 soient nuls. L'existence de l'inverse et la structure de ℝ vs ℤ/nℤ.", hasContent: true },
+  { num: 97, title: "Le village des chevaliers et des fripouilles — logique élémentaire", theme: "Logique", level: "Collège / Lycée", desc: "4 problèmes de logique propositionnelle inspirés de Smullyan. Sami, Thomas et Morjène-Lou. L'apprenti sorcier. Raisonner par l'absurde et par contradiction.", hasContent: true },
+  { num: 98, title: "Le principe des tiroirs de Dirichlet et ses applications", theme: "Combinatoire", level: "Collège / Lycée", desc: "5 applications : triangle équilatéral colorié, poignées de main, sommes valant 11, entiers premiers entre eux, division. Dirichlet s'en sert pour prouver l'existence de solutions de Pell.", hasContent: true },
+  { num: 99, title: "Leçon inaugurale de première spécialité — polynômes et problem-solving", theme: "Algèbre", level: "Première", desc: "(b−c)³+(c−a)³+(a−b)³=3(b−c)(c−a)(a−b) sans développement : factorisation par les racines. M=3 par substitution. Leçon inaugurale avec exercices de recherche.", hasContent: false },
+  { num: 100, title: "Dieu, Newton et la méthode de Fermat pour les paraboles", theme: "Analyse", level: "Seconde / Première", desc: "Fermat prouve qu'un rectangle de périmètre fixe a une aire maximale quand c'est un carré. Méthode de la tangente. Berkeley vs Newton sur les infiniment petits.", hasContent: false },
+  { num: 101, title: "Publication 101 — à venir", theme: "Divers", level: "Tous niveaux", desc: "Prochaine publication.", hasContent: false },
+];
+
+// ─────────────────────────────────────────────
+//  ARTICLES — contenu complet avec LaTeX
+// ─────────────────────────────────────────────
+const ARTICLES = {
+1: `
+    <p>Les mathématiques sont une symphonie d'une rare beauté ! Enseigner seulement ses notes sans interpréter la mélodie décourage les apprenants. De surcroît, l'approche actuelle de l'enseignement des mathématiques semble souvent fournir des réponses à des questions que les élèves ne se posent pas naturellement. Il est donc judicieux de motiver les apprentissages avant de plonger les apprenants dans des techniques parfois complexes et d'origines obscures aux yeux du débutant.</p>
+    <blockquote>« J'ai vu plus loin que les autres parce que je me suis juché sur les épaules de géants. »<cite>— Isaac Newton</cite></blockquote>
+    <p>Dans mes recherches personnelles, je m'intéresse à la transposition de l'histoire dans l'enseignement des mathématiques. Contextualiser les objets mathématiques permet en effet de mieux les apprécier. Cette tâche, bien que difficile en raison de la complexité de l'histoire, me semble pertinente car les objets s'y développent plutôt « naturellement ».</p>
+    <h2>L'équation de Pell et l'irrationalité de \\(\\sqrt{2}\\)</h2>
+    <p>L'histoire des structures algébriques trouve son origine dans les travaux des mathématiciens de la Grèce antique. Hippase de Métaponte découvre l'irrationalité du nombre d'or, ainsi que celle de la racine carrée de 2. Cette dernière découverte signifie, en termes modernes, que l'équation \\(x^2 - 2y^2 = 0\\) n'admet pas de solution dans \\(\\mathbb{Z} \\times \\mathbb{Z}\\). Mais que dire de l'équation \\(x^2 - 2y^2 = 1\\) ? La première solution non triviale est le couple \\((3, 2)\\). La deuxième est \\((17, 12)\\). En formant les rapports \\(\\frac{3}{2} = 1{,}5\\) puis \\(\\frac{17}{12} = 1{,}4166\\ldots\\), la troisième solution donne \\(\\frac{99}{70} = 1{,}4142\\ldots\\) Ces rapports approchent \\(\\sqrt{2}\\). En effet, si \\((x, y)\\) est une solution avec \\(y\\) non nul, en divisant par \\(y^2\\) :</p>
+    <div class="math-display">\\[ \\left(\\frac{x}{y}\\right)^2 - 2 = \\frac{1}{y^2} \\]</div>
+    <p>Plus \\(y\\) est grand, plus \\(\\frac{x}{y}\\) est proche de \\(\\sqrt{2}\\). D'où l'intérêt de calculer de grandes solutions de l'équation \\(x^2 - 2y^2 = 1\\).</p>
+    <h2>La loi de composition de Brahmagupta</h2>
+    <p>Brahmagupta, mathématicien indien du 6ème siècle, avait connaissance d'une loi de composition entre les solutions. Si \\((x_1, y_1)\\) et \\((x_2, y_2)\\) sont deux solutions de \\(x^2 - ny^2 = 1\\), une troisième solution \\((x_3, y_3)\\) s'obtient par :</p>
+    <div class="math-display">\\[ x_3 = x_1 x_2 + n y_1 y_2, \\qquad y_3 = x_1 y_2 + y_1 x_2 \\]</div>
+    <p>Pour \\(n = 2\\), le nombre \\(3 + 2\\sqrt{2}\\) représente la solution \\((3, 2)\\). En le multipliant par lui-même :</p>
+    <div class="math-display">\\[ (3 + 2\\sqrt{2})^2 = 17 + 12\\sqrt{2} \\quad \\Rightarrow \\quad (17, 12) \\]</div>
+    <div class="math-display">\\[ (3 + 2\\sqrt{2})^3 = 99 + 70\\sqrt{2} \\quad \\Rightarrow \\quad (99, 70) \\]</div>
+    <h2>Structure de groupe et caractère monogène</h2>
+    <p>La loi de multiplication ci-dessus est une loi de groupe. On démontre que les puissances de \\(3 + 2\\sqrt{2}\\) donnent <em>toutes</em> les solutions positives de \\(x^2 - 2y^2 = 1\\). L'image de \\(G^+\\) par le morphisme \\(\\log\\) est un sous-groupe de \\((\\mathbb{R}, +)\\) d'élément minimal positif \\(a = \\log(3 + 2\\sqrt{2})\\), donc de la forme \\(a\\mathbb{Z}\\).</p>
+    <div class="aside-note">
+      <strong>Un défi illustrant la difficulté du problème général :</strong> la plus petite solution de \\(x^2 - 61y^2 = 1\\) vaut \\((1\\,766\\,319\\,049,\\; 226\\,153\\,980)\\) ! Le tout serait de trouver la solution minimale permettant de générer toutes les autres — question non triviale qui nécessite de travailler avec les <em>fractions continues</em>, malheureusement grand absent des programmes.
+    </div>
+    <h2>Euler, Bachet et les entiers de Gauss</h2>
+    <p>Euler factorise dans l'anneau \\(\\mathbb{Z}[\\sqrt{-2}]\\) pour résoudre l'équation de Bachet \\(y^3 = x^2 + 2\\) :</p>
+    <div class="math-display">\\[ y^3 = (x - \\sqrt{-2})(x + \\sqrt{-2}) \\]</div>
+    <p>Gauss reprend l'artifice dans \\(\\mathbb{Z}[i]\\) pour les triplets pythagoriciens. En factorisant \\(x^2 + y^2 = z^2\\) dans \\(\\mathbb{Z}[i]\\) et en supposant \\(x + yi\\) et \\(x - yi\\) premiers entre eux, il en déduit que \\(x + yi = (u + vi)^2\\), ce qui donne d'un seul coup la formule générale :</p>
+    <div class="math-display">\\[ x = u^2 - v^2, \\qquad y = 2uv, \\qquad z = u^2 + v^2 \\]</div>
+    <p>Les mathématiques dévoilent leurs secrets plus facilement en explorant leur histoire !</p>
+  `,
+3: `
+    <blockquote>— Que mesure-t-on physiquement lorsqu'on dit que la mesure d'un angle vaut 30° ?<br>— C'est l'ouverture de l'angle, monsieur !<br>— Pas vraiment. Plus on s'éloigne du sommet d'un angle, plus cette ouverture semble grande. Qu'est-ce qui reste constant quand on s'éloigne du sommet ?<br>— …</blockquote>
+    <h2>La proportion du secteur angulaire</h2>
+    <p>Soit un angle de sommet \\(O\\). Un cercle de centre \\(O\\) et de rayon \\(r\\) découpe un secteur angulaire d'aire \\(A(r)\\). Puisque l'agrandissement par \\(R/r\\) multiplie les aires par \\((R/r)^2\\), le rapport \\(A(S)/A(D)\\) ne dépend pas du rayon choisi — c'est la constante intrinsèque de l'angle. La convention des degrés pose :</p>
+    <div class="math-display">\\[ \\text{mesure en degrés} = 360 \\times \\frac{A(S)}{\\pi r^2} \\]</div>
+    <h2>Mesure en radians et définition des fonctions trigonométriques</h2>
+    <p>Mesurer en radians consiste à caractériser un angle par la longueur de l'arc qu'il intercepte avec le cercle unité. Un angle de mesure \\(x\\) radians intercepte un secteur d'aire \\(x/2\\), puisque ce secteur représente la fraction \\(x/(2\\pi)\\) du disque d'aire \\(\\pi\\).</p>
+    <p>Spivak propose de définir rigoureusement les fonctions trigonométriques via les aires. On pose d'abord \\(\\pi\\) comme l'aire du disque unité, puis pour \\(x \\in [-1, 1]\\) :</p>
+    <div class="math-display">\\[ A(x) = \\frac{x\\sqrt{1 - x^2}}{2} + \\int_{x}^{1} \\sqrt{1 - t^2}\\, dt \\]</div>
+    <p>Cette fonction est strictement décroissante (\\(A'(x) = -1/(2\\sqrt{1-x^2}) < 0\\)), avec \\(A(1)=0\\) et \\(A(-1)=\\pi/2\\). On peut l'inverser : pour tout \\(x \\in [0,\\pi]\\), il existe un unique \\(\\cos(x)\\) tel que \\(A(\\cos x) = x/2\\), puis \\(\\sin(x) = \\sqrt{1-\\cos^2(x)}\\).</p>
+    <h2>Pourquoi les radians sont incontournables</h2>
+    <p>En radians, les dérivées prennent leur forme la plus simple :</p>
+    <div class="math-display">\\[ \\sin'(x) = \\cos(x), \\qquad \\cos'(x) = -\\sin(x) \\]</div>
+    <p>En degrés, un facteur \\(\\pi/180\\) parasite apparaît. Les radians sont l'unique unité pour laquelle :</p>
+    <div class="math-display">\\[ \\lim_{x \\to 0} \\frac{\\sin x}{x} = 1 \\]</div>
+    <div class="aside-note"><strong>Longueur des courbes.</strong> Pour une fonction \\(f\\) sur \\([a,b]\\), la longueur de son graphe vaut \\(L = \\int_a^b \\sqrt{1 + f'(x)^2}\\, dx\\) — formule fondamentale, absente des programmes scolaires.</div>
+    <p><em>Source principale : Calculus, Michael Spivak.</em></p>
+  `,
+4: `
+    <blockquote>— Pourquoi l'aire d'un rectangle vaut-elle \\(L \\times \\ell\\) ?<br>— …</blockquote>
+    <h2>Qu'est-ce que mesurer une aire ?</h2>
+    <p>Mesurer l'aire d'une partie \\(A\\) du plan, c'est lui associer un réel positif \\(\\mu(A)\\) vérifiant l'additivité (si \\(A\\) et \\(B\\) disjointes, \\(\\mu(A \\cup B) = \\mu(A) + \\mu(B)\\)) et l'invariance par isométrie.</p>
+    <h2>Cas entier et rationnel</h2>
+    <p>Pour un rectangle \\(p \\times q\\) à côtés entiers, on le pave par \\(pq\\) carrés unités. Par additivité, \\(\\mu(R) = pq\\). Pour \\(L = 5{,}4\\) et \\(\\ell = 3{,}2\\), on pave avec des carrés de côté \\(0{,}1\\), d'aire \\(0{,}01\\). Il y en a \\(54 \\times 32\\), donc \\(\\mu(R) = 5{,}4 \\times 3{,}2 = L \\times \\ell\\).</p>
+    <h2>Cas irrationnel — le théorème des gendarmes</h2>
+    <p>Pour \\(L = \\pi\\) et \\(\\ell = \\sqrt{2}\\), on approche par des rectangles décimaux \\(L_n \\leq L < L'_n\\). Alors :</p>
+    <div class="math-display">\\[ L_n \\ell_n \\leq \\mu(R) \\leq L'_n \\ell'_n \\]</div>
+    <p>Les deux suites convergent vers \\(L\\ell\\). Par le théorème des gendarmes, \\(\\mu(R) = L \\times \\ell\\). Incroyable n'est-ce pas ?</p>
+    <p><em>Source : Daniel Perrin, Mathématiques d'école, Cassini 2011.</em></p>
+  `,
+10: `
+    <h2>Le problème</h2>
+    <p>On tire au hasard deux nombres \\(B\\) et \\(C\\) indépendamment et uniformément sur \\([0,1]\\). Quelle est la probabilité que l'équation \\(x^2 + Bx + C = 0\\) admette des solutions réelles ?</p>
+    <p>Une simulation Python suggère que cette probabilité converge vers \\(\\boxed{\\dfrac{1}{12}}\\).</p>
+    <h2>Solution géométrique</h2>
+    <p>L'équation admet des solutions réelles si et seulement si \\(B^2 - 4C \\geq 0\\), soit \\(C \\leq B^2/4\\). En représentant \\(B\\) en abscisse et \\(C\\) en ordonnée, la probabilité est l'aire sous la parabole \\(C = B^2/4\\) dans le carré \\([0,1]^2\\) :</p>
+    <div class="math-display">\\[ P = \\int_0^1 \\frac{B^2}{4}\\, dB = \\frac{1}{4} \\cdot \\frac{1}{3} = \\frac{1}{12} \\]</div>
+    <h2>Origine physique (Paul Nahin, <em>Duelling Idiots</em>)</h2>
+    <p>En 1883, FitzGerald proposa de décharger un condensateur à travers un circuit inductif pour générer des ondes électromagnétiques. Le mode de décharge dépend d'une équation quadratique à coefficients aléatoires. Si l'expérimentateur choisit les composants au hasard, la probabilité d'oscillations est exactement \\(1/12\\).</p>
+  `,
+21: `
+    <h2>Nombres parfaits et la fonction \\(\\sigma\\)</h2>
+    <p>Un entier \\(N\\) est <strong>parfait</strong> si \\(\\sigma(N) = 2N\\), où \\(\\sigma(N)\\) désigne la somme de tous ses diviseurs positifs. Les premiers exemples connus des Grecs : 6, 28, 496, 8128.</p>
+    <p>Euclide a montré que si \\(p = 2^n - 1\\) est premier (nombre de Mersenne), alors \\(N = 2^{n-1}(2^n-1)\\) est parfait. Euler a démontré la réciproque : <em>tout nombre parfait pair est de cette forme</em>.</p>
+    <h2>Propriétés de la fonction \\(\\sigma\\)</h2>
+    <p>La fonction \\(\\sigma\\) est <strong>multiplicative</strong> : si \\(\\gcd(a,b) = 1\\), alors \\(\\sigma(ab) = \\sigma(a)\\sigma(b)\\). De plus, pour \\(p\\) premier :</p>
+    <div class="math-display">\\[ \\sigma(p^r) = 1 + p + \\cdots + p^r = \\frac{p^{r+1}-1}{p-1} \\]</div>
+    <h2>Preuve du théorème d'Euler</h2>
+    <p>Soit \\(N\\) un nombre parfait pair. On écrit \\(N = 2^{n-1} k\\) avec \\(k\\) impair et \\(n > 1\\). Puisque \\(N\\) est parfait et \\(\\gcd(2^{n-1}, k) = 1\\) :</p>
+    <div class="math-display">\\[ (2^n - 1)\\sigma(k) = 2^n k \\]</div>
+    <p>Donc \\(2^n \\mid \\sigma(k)\\), soit \\(\\sigma(k) = b \\cdot 2^n\\) et \\(k = b(2^n - 1)\\). Si \\(b > 1\\), les entiers \\(1, b, 2^n-1, k\\) sont quatre diviseurs deux à deux distincts de \\(k\\) — contredisant \\(\\sigma(k) = b \\cdot 2^n\\). Donc \\(b = 1\\), \\(k = 2^n-1\\), et \\(\\sigma(k) = k+1\\), ce qui signifie que \\(k\\) est premier. \\(\\square\\)</p>
+    <div class="aside-note">Ce théorème était accessible aux outils d'Euclide, mais c'est Euler qui l'a percé en incluant \\(N\\) lui-même dans la somme des diviseurs — un choix en apparence anodin qui fait tomber le problème comme une pomme mûre.</div>
+  `,
+42: `
+    <h2>Le petit théorème de Fermat</h2>
+    <p>Si \\(p\\) est un nombre premier et \\(a\\) un entier quelconque : \\(a^p \\equiv a \\pmod{p}\\).</p>
+    <p>Fermat aurait découvert ce théorème en étudiant les nombres parfaits.</p>
+    <h2>Nombres de Mersenne</h2>
+    <p>Euclide a montré que si \\(p = 2^n - 1\\) est premier, alors \\(2^{n-1}(2^n-1)\\) est parfait. Pour que \\(2^n-1\\) soit premier, il faut que \\(n\\) soit premier (mais ce n'est pas suffisant : \\(2^{11}-1 = 23 \\times 89\\)).</p>
+    <h2>Application : factoriser \\(2^{37}-1\\)</h2>
+    <p>Frénicle de Bessy demande à Fermat un nombre parfait entre \\(10^{20}\\) et \\(10^{22}\\). Fermat doit tester \\(n = 37\\). Il utilise le corollaire suivant :</p>
+    <div class="aside-note"><strong>Corollaire :</strong> si \\(n\\) est premier et \\(p \\mid 2^n - 1\\), alors \\(p \\equiv 1 \\pmod{n}\\). Comme \\(p-1\\) est pair, on a même \\(p = 1 + 2nk\\).</div>
+    <p>Pour \\(n=37\\), on cherche \\(p = 1 + 74k\\). En testant \\(k=1,2,3,\\ldots\\) : pour \\(k=3\\), \\(p = 223\\) divise bien \\(2^{37}-1\\). Quel génie ce Fermat !</p>
+    <h2>Erreur de Fermat : les nombres de Fermat</h2>
+    <p>Fermat conjecture que \\(F_m = 2^{2^m} + 1\\) est toujours premier. Euler réfute en montrant :</p>
+    <div class="math-display">\\[ F_5 = 2^{32} + 1 = 641 \\times 6700417 \\]</div>
+    <p>en utilisant la même méthode que Fermat lui-même. André Weil pense que Fermat avait connaissance de cela, mais avait commis une erreur de calcul.</p>
+  `,
+98: `
+    <h2>Le principe des tiroirs (Dirichlet)</h2>
+    <p>Si l'on range \\(n+1\\) objets dans \\(n\\) tiroirs, alors au moins un tiroir contient au moins deux objets.</p>
+    <p>Ce principe, accessible aux collégiens, a des applications profondes — notamment la preuve par Dirichlet que l'équation de Pell \\(x^2 - ny^2 = 1\\) admet une solution non triviale.</p>
+    <h2>Cinq applications</h2>
+    <h3>1. Points colorés à distance 1</h3>
+    <p>Les points du plan sont colorés en rouge et bleu. Plaçons un triangle équilatéral de côté 1 : ses 3 sommets occupent 2 couleurs (tiroirs), donc deux sommets ont la même couleur et sont à distance 1. \\(\\square\\)</p>
+    <h3>2. Poignées de main</h3>
+    <p>Avec \\(n\\) personnes à une fête, le nombre de mains serrées est dans \\(\\{0, 1, \\ldots, n-1\\}\\), mais les valeurs 0 et \\(n-1\\) sont incompatibles : il n'y a que \\(n-1\\) valeurs possibles pour \\(n\\) personnes. \\(\\square\\)</p>
+    <h3>3. Somme valant 11</h3>
+    <p>On choisit 6 nombres dans \\(\\{1, \\ldots, 10\\}\\). Tiroirs : \\((1,10), (2,9), (3,8), (4,7), (5,6)\\). Deux nombres tombent dans le même tiroir et leur somme vaut 11. \\(\\square\\)</p>
+    <h3>4. Entiers premiers entre eux</h3>
+    <p>Même contexte. Tiroirs : \\((1,2), (3,4), (5,6), (7,8), (9,10)\\). Deux nombres dans le même tiroir sont consécutifs, donc premiers entre eux. \\(\\square\\)</p>
+    <h3>5. L'un divise l'autre</h3>
+    <p>Tout entier \\(m \\in [1, 2n]\\) s'écrit \\(m = 2^i \\cdot j\\) avec \\(j\\) impair. Il n'y a que \\(n\\) entiers impairs dans \\([1,2n]\\). Si on prend \\(n+1\\) entiers, deux ont le même \\(j\\) — le plus petit divise le plus grand. \\(\\square\\)</p>
+  `,
+};
+
+// ─────────────────────────────────────────────
+//  ÉTAT & FILTRES
+// ─────────────────────────────────────────────
+let activeTheme = 'Tous';
+let activeLevel = 'Tous';
+
+function getThemes() {
+  return ['Tous', ...[...new Set(DATA.map(d => d.theme))].sort((a,b) => a.localeCompare(b,'fr'))];
+}
+function getLevels() {
+  return ['Tous', ...[...new Set(DATA.map(d => d.level))]];
+}
+
+function buildFilterGroup(containerId, items, activeValue, type) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  el.innerHTML = '';
+  items.forEach(val => {
+    const count = val === 'Tous' ? DATA.length : DATA.filter(d => (type === 'theme' ? d.theme : d.level) === val).length;
+    const btn = document.createElement('button');
+    btn.className = 'aside-btn' + (val === activeValue ? ' active' : '');
+    btn.innerHTML = `${val}<span class="aside-count">${count}</span>`;
+    btn.addEventListener('click', () => {
+      if (type === 'theme') activeTheme = val;
+      else activeLevel = val;
+      buildFilters();
+      render();
+      updateFilterBadge();
+    });
+    el.appendChild(btn);
+  });
+}
+
+function buildFilters() {
+  const themes = getThemes();
+  const levels = getLevels();
+  buildFilterGroup('theme-filters', themes, activeTheme, 'theme');
+  buildFilterGroup('level-filters', levels, activeLevel, 'level');
+  buildFilterGroup('theme-filters-mobile', themes, activeTheme, 'theme');
+  buildFilterGroup('level-filters-mobile', levels, activeLevel, 'level');
+  document.getElementById('count-total').textContent = DATA.length;
+  document.getElementById('count-themes').textContent = new Set(DATA.map(d => d.theme)).size;
+}
+
+function updateFilterBadge() {
+  const badge = document.getElementById('filter-badge');
+  const hasFilter = activeTheme !== 'Tous' || activeLevel !== 'Tous';
+  badge.style.display = hasFilter ? 'inline' : 'none';
+}
+
+function toggleFilterDrawer() {
+  document.getElementById('filter-drawer').classList.toggle('open');
+}
+
+function render() {
+  const q = (document.getElementById('search').value || '').toLowerCase().trim();
+  const filtered = DATA.filter(d => {
+    if (activeTheme !== 'Tous' && d.theme !== activeTheme) return false;
+    if (activeLevel !== 'Tous' && d.level !== activeLevel) return false;
+    if (q && !d.title.toLowerCase().includes(q) && !d.desc.toLowerCase().includes(q) && !d.theme.toLowerCase().includes(q)) return false;
+    return true;
+  });
+
+  document.getElementById('results-info').textContent = `${filtered.length} publication${filtered.length !== 1 ? 's' : ''}`;
+  const list = document.getElementById('pub-list');
+
+  if (!filtered.length) {
+    list.innerHTML = '<div class="empty-state">Aucune publication ne correspond à cette recherche.</div>';
+    return;
+  }
+
+  list.innerHTML = filtered.map(d => {
+    // Utiliser l'index réel dans DATA (pas l'index dans filtered)
+    const dataIdx = DATA.findIndex(x => x.num === d.num);
+    return `<div class="pub-card" role="button" tabindex="0"
+        onclick="openArticle(${dataIdx})"
+        onkeydown="if(event.key==='Enter'||event.key===' ')openArticle(${dataIdx})">
+      <div>
+        <div class="card-top">
+          <span class="type-tag article">Article</span>
+          <span class="card-theme">${d.theme}</span>
+        </div>
+        <div class="card-title">${d.title}</div>
+        <div class="card-desc">${d.desc}</div>
+      </div>
+      <div class="card-right">
+        <span class="card-num">#${String(d.num).padStart(2,'0')}</span>
+        <span class="card-level">${d.level}</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ─────────────────────────────────────────────
+//  ARTICLE PAGE
+// ─────────────────────────────────────────────
+let currentArticleIdx = 0;
+
+function openArticle(i) {
+  currentArticleIdx = i;
+  const d = DATA[i];
+  document.getElementById('ap-tag').textContent = 'Article';
+  document.getElementById('ap-theme').textContent = d.theme;
+  document.getElementById('ap-level').textContent = d.level;
+  document.getElementById('ap-title').textContent = d.title;
+  document.getElementById('ap-num').textContent = `Publication #${String(d.num).padStart(2,'0')}`;
+  document.getElementById('ap-date').textContent = '';
+
+  const content = ARTICLES[d.num];
+  const ap = document.getElementById('ap-content');
+
+  if (content) {
+    ap.innerHTML = content;
+  } else {
+    ap.innerHTML = `
+      <p>Le contenu complet de cette publication n'est pas encore disponible dans cette interface.</p>
+      <p><strong>Résumé :</strong> ${d.desc}</p>
+      <div class="aside-note">
+        Cette publication traite de : <em>${d.theme}</em>, niveau ${d.level}.
+      </div>
+      <p>Retrouvez le texte intégral sur la page Facebook <em>La Planète 1729</em>.</p>
+    `;
+  }
+
+  if (window.MathJax && window.MathJax.typesetPromise) {
+    window.MathJax.typesetPromise([ap]).catch(err => console.error(err));
+  }
+
+  const navFooter = document.getElementById('ap-nav-footer');
+  const prev = i > 0 ? DATA[i-1] : null;
+  const next = i < DATA.length-1 ? DATA[i+1] : null;
+  navFooter.innerHTML = `
+    ${prev ? `<button class="art-nav-btn" onclick="openArticle(${i-1})"><span>← Précédent</span>${prev.title}</button>` : '<div></div>'}
+    ${next ? `<button class="art-nav-btn" style="text-align:right" onclick="openArticle(${i+1})"><span>Suivant →</span>${next.title}</button>` : '<div></div>'}
+  `;
+
+  document.getElementById('main-wrapper').style.display = 'none';
+  document.getElementById('article-page').classList.add('open');
+  window.scrollTo(0, 0);
+}
+
+function closeArticle() {
+  document.getElementById('article-page').classList.remove('open');
+  document.getElementById('main-wrapper').style.display = '';
+  window.scrollTo(0, 0);
+}
+
+function scrollToPublications() {
+  document.getElementById('publications').scrollIntoView({ behavior: 'smooth' });
+}
+function scrollToAbout() {
+  document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
+}
+
+// ─────────────────────────────────────────────
+//  INIT
+// ─────────────────────────────────────────────
+buildFilters();
+render();
+</script>
+</body>
+</html>
